@@ -1,3 +1,9 @@
+* {
+  margin: 0;              /* Removes default spacing outside elements */
+  padding: 0;             /* Removes default spacing inside elements */
+  box-sizing: border-box; /* Makes width/height include padding and border */
+}
+
 /* General Reset */
 body {
   margin: 0;
@@ -10,20 +16,8 @@ a {
   color: inherit;
 }
 
-/* .container{
-    display: grid;
-    grid-template-rows: 0.5fr 5fr 0.2fr;
-    grid-template-columns: 0.8fr 5fr;
-    grid-template-areas: 
-    "nav header header"
-    "nav main main"
-    "nav footer footer";
-    grid-gap: .75em;
-} */
-
 .container {
-  width: 90%;
-  max-width: 1200px;
+  width: 85%;
   margin: auto;
 }
 
@@ -41,7 +35,6 @@ a {
   padding: 10px 60px;
   gap: 40px;
   width: 100%;
-  max-width: 1400px;
 }
 
 .logo {
@@ -62,7 +55,7 @@ a {
 .header-icons {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 40px;
 }
 
 .header-icons > div {
@@ -73,7 +66,7 @@ a {
   font-size: 12px;
 }
 
-.account a img {
+.account a img{
   width: 60px;
   height: 40px;
   margin-bottom: 4px;
@@ -92,6 +85,7 @@ a {
   width: 60px;
   height: 55px;
   margin-bottom: 4px;
+  display: block;
 }
 
 .cart-count {
@@ -129,6 +123,7 @@ a {
 .main-nav a:hover {
   color: #007bff;
 }
+
 
 /* HERO ------------------------- */
 /* .hero {
