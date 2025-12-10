@@ -10,6 +10,17 @@ a {
   color: inherit;
 }
 
+/* .container{
+    display: grid;
+    grid-template-rows: 0.5fr 5fr 0.2fr;
+    grid-template-columns: 0.8fr 5fr;
+    grid-template-areas: 
+    "nav header header"
+    "nav main main"
+    "nav footer footer";
+    grid-gap: .75em;
+} */
+
 .container {
   width: 90%;
   max-width: 1200px;
@@ -62,7 +73,7 @@ a {
   font-size: 12px;
 }
 
-.account a img{
+.account a img {
   width: 60px;
   height: 40px;
   margin-bottom: 4px;
@@ -118,7 +129,6 @@ a {
 .main-nav a:hover {
   color: #007bff;
 }
-
 
 /* HERO ------------------------- */
 /* .hero {
