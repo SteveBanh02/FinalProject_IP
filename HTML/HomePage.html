@@ -4,74 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>E-Commerce Project - Home Page</title>
-    <link rel="stylesheet" href="/FinalProject_IP/CSS/style.css" />
+    <!-- <link rel="stylesheet" href="/FinalProject_IP/CSS/style.css" /> -->
+    <link rel="stylesheet" href="/CSS/style.css" />
   </head>
 
   <body>
-    <header class="site-header">
-      <div class="container header-content">
-        <h1 class="logo">LUMINA</h1>
+    <div class="container">
 
-         <div class="search-container">
-      <input
-        class="search-bar"
-        type="text"
-        id="search-input"
-        placeholder="Search products..."
-      />
-    </div>
-    
-    <div class="header-icons">
-      <div class="reorder">
-        <span>Reorder</span>
-        <span>My Items</span>
-      </div>
-      
-      <div class="account">
-        <img src="/FinalProject_IP/profile.png" alt="Account" />
-        <span>Sign In</span>
-        <span>Account</span>
-      </div>
-      
-      <div class="cart-icon">
-        <img src="/FinalProject_IP/shopping_cart.png" alt="Cart" />
-        <span class="cart-count">0</span>
-      </div>
-    </div>
-  </div>
-  
-  <nav class="main-nav">
-    <a href="#">Apparel</a>
-    <a href="#">Clothing</a>
-    <a href="#">Accessories</a>
-    <a href="#">Home Goods</a>
-    <a href="#">Sale</a>
-  </nav>
+      <header class="site-header">
+        <div class="headerContent-container">
+          <h1 class="logo">LUMINA</h1>
 
-        <!-- 
-        <div class="header-icons">
           <input
             class="search-bar"
             type="text"
             id="search-input"
             placeholder="Search products..."
           />
-
-          <div class="cart-icon">
-            <img src="/FinalProject_IP/shopping_cart.png" />
+    
+          <div class="header-icons">
+            <div class="reorder">
+              <span>Reorder</span>
+              <span>My Items</span>
+            </div>
+          
+            <div class="account">
+              <a href="/HTML/LoginPage.html"><img src="/profile.png" alt="Account"/></a>
+              <span>Sign In</span>
+              <span>Account</span>
+            </div>
+            
+            <div class="cart-icon">
+              <a href="/HTML/ShopCartPage.html"><img src="/shopping_cart.png" alt="Cart"/></a>
+              <span class="cart-count">0</span>
+            </div>
           </div>
+        </div>
 
-          <div class="profile-icon">
-            <img src="/FinalProject_IP/profile.png" />
-          </div>
+        <nav class="main-nav">
+          <a href="#">Apparel</a>
+          <a href="#">Clothing</a>
+          <a href="#">Accessories</a>
+          <a href="#">Home Goods</a>
+          <a href="#">Sale</a>
+        </nav>
+      </header>
+    </div>
 
-          <i class="fa-solid fa-user"></i>
-        </div> -->
-      </div>
-    </header>
 
     <!-- HERO SECTION -->
-    <section class="hero">
+    <!-- <section class="hero">
       <div class="hero-text">
         <h2>Effortless Style,<br />Curated Living.</h2>
         <button class="cta-btn">SHOP THE NEW COLLECTION</button>
@@ -83,10 +65,10 @@
           src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=80"
         />
       </div>
-    </section>
+    </section> -->
 
     <!-- FEATURED CATEGORIES -->
-    <section class="categories container">
+    <!-- <section class="categories container">
       <h3>Featured Categories</h3>
 
       <div class="category-grid">
@@ -105,7 +87,7 @@
           <p>Accessories</p>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- FOOTER -->
     <footer>
@@ -138,5 +120,6 @@
         </div>
       </div>
     </footer>
+    </div>
   </body>
 </html>
