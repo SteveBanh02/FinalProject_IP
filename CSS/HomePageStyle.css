@@ -1,0 +1,319 @@
+* {
+  margin: 0;              /* Removes default spacing outside elements */
+  padding: 0;             /* Removes default spacing inside elements */
+  box-sizing: border-box; /* Makes width/height include padding and border */
+}
+
+/* General Reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-rows: 0.5fr 5fr 0.2fr;
+  grid-template-columns: 0.8fr 5fr;
+  grid-template-areas: 
+  "header header header"
+  "main main main"
+  "footer footer footer";
+  grid-gap: .75em;
+}
+
+
+/* HEADER  */
+header{
+  grid-area: header;
+}
+
+.site-header {
+  background: #fff;
+  padding: 20px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.headerContent-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 60px;
+  gap: 40px;
+  width: 100%;
+}
+
+.logo {
+  font-size: 32px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 700px;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  font-size: 16px;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-icons > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.account a img{
+  width: 60px;
+  height: 40px;
+  margin-bottom: 4px;
+}
+
+/* Style for cart icon container */
+.cart-icon {
+  position: relative;
+}
+
+/* Style for cart icon link */
+.cart-icon a {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style for cart icon image */
+.cart-icon a img {
+  width: 60px;
+  height: 55px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Style for cart item count badge */
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff4444;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* modify the main navigation bar*/
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 15px 0;
+  background: #f8f8f8;
+}
+
+/* Style for main navigation links */
+.main-nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+/* Hover effect for main navigation links */
+.main-nav a:hover {
+  color: #007bff;
+}
+
+/* modify the category navigation bar*/
+.category-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px 0;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+/* Style for category links */
+.category-nav a {
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border-radius: 4px;
+}
+
+
+/* Main */
+.main-content {
+  grid-area: main;
+  width: 85%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+#hero-section {
+  position: relative;
+  width : 100%;
+  height: 500px;
+  margin-bottom: 60px;
+  overflow: hidden; /* Hide overflow to prevent scrollbars */
+  border-radius: 12px;
+}
+
+.slider-container {
+  width: 100%;
+  height: 100%;
+  position: relative; /* Ensure the slider container fills the hero section */
+}
+
+.slide {
+  position: relative; /* Position slides relative to the slider container */
+  width: 100%;
+  height: 100%;
+  /* opacity: 0; Hide all slides initially */
+  transition: opacity 0.5s ease-in-out; /* Smooth transition for slide changes */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.slide:nth-child(2) {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+ .slide.active {
+  opacity: 1; /* Show the active slide */
+}
+
+/* Slide Content Styling */
+.slide-content {
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+
+.slide-content h2 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.slide-content p {
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+
+.ctn-btn {
+  padding: 15px 40px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;/* Smooth hover effects */
+}
+
+.ctn-btn:hover {
+  transform: translateY(-5px);/* Slight lift on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 5);/* Subtle shadow on hover */
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 15px 20px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.3);
+  transition: 0.3s;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-size: 24px;
+}
+
+ .slider-btn:hover {
+  background: rgba(255,255,255,0.5);
+}
+
+.slider-btn.prev {
+  left: 20px;/* Position previous button on the left */
+}
+
+ .slider-btn.next {
+  right: 20px;/* Position next button on the right */
+}
+
+
+
+
+/* FOOTER  */
+footer {
+  background: #f8f8f8;
+  padding: 40px 0;
+  margin-top: 40px;
+  grid-area: footer;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-section h4 {
+  margin-bottom: 15px;
+}
+
+.footer-section a {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer-section form {
+  display: flex;
+}
+
+.footer-section input {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.footer-section button {
+  padding: 8px 15px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+.social-icons i {
+  font-size: 1.4em;
+  margin-right: 10px;
+}

@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>E-Commerce Project - Home Page</title>
-    <!-- <link rel="stylesheet" href="/FinalProject_IP/CSS/style.css" /> -->
-    <link rel="stylesheet" href="/CSS/style.css" />
+    <!-- <link rel="stylesheet" href="/FinalProject_IP/CSS/HomePageStyle.css" /> -->
+    <link rel="stylesheet" href="/CSS/HomePageStyle.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/Javascript/HomePageStyle.js"></script>
   </head>
 
   <body>
@@ -23,11 +25,6 @@
           />
     
           <div class="header-icons">
-            <div class="reorder">
-              <span>Reorder</span>
-              <span>My Items</span>
-            </div>
-          
             <div class="account">
               <a href="/HTML/LoginPage.html"><img src="/profile.png" alt="Account"/></a>
               <span>Sign In</span>
@@ -38,19 +35,60 @@
               <a href="/HTML/ShopCartPage.html"><img src="/shopping_cart.png" alt="Cart"/></a>
               <span class="cart-count">0</span>
               <span>My Cart</span>
-
             </div>
           </div>
         </div>
 
+        <!-- Main Navigation -->
         <nav class="main-nav">
-          <a href="#">Apparel</a>
-          <a href="#">Clothing</a>
-          <a href="#">Accessories</a>
-          <a href="#">Home Goods</a>
-          <a href="#">Sale</a>
+          <a href="HomePage.html">Home</a>
+          <a href="ListProduct.html">Shop/Products</a>
+          <a href="AboutPage.html">About Us</a>
+          <a href="#">Contact</a>
+          <!-- <a href="#">Reviews</a> -->
         </nav>
+
+        <!-- product category navigation -->
+        <nav class="category-nav" id="category-nav"></nav>
       </header>
+
+      <main class="main-content">
+
+        <section id="hero-section">
+          <div class="slider-container"> 
+
+            <section class="slide active">
+              <section class="slide-content">
+                <h2>Effortless Style,<br/>Curated Living.</h2>
+                <p class="shipping-banner">FREE SHIPPING ON ALL ORDERS OVER $75</p>
+                <button class="ctn-btn">SHOP THE NEW COLLECTION</button>
+              </section>
+            </section>
+
+            <section class="slide">
+              <section class="slide-content">
+                <h2>New Arrivals</h2>
+                <p>Fresh styles just landed</p>
+                <button class="ctn-btn">Explore Now</button>
+              </section>
+            </section>
+
+          </div>
+
+          <!-- Slider Controls -->
+          <button class="slider-btn prev" onclick="changeSlide(-1)"></button>
+          <button class="slider-btn next" onclick="changeSlide(1)"></button>
+
+          <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+          </div>
+
+        </section>
+
+      </main>
+
 
       <footer>
         <div class="container footer-content">
