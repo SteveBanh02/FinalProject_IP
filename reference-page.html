@@ -1,179 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LUMINA - Home</title>
-  <style>
-    /* UNIVERSAL RESET - applies to ALL elements */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LUMINA - Home</title>
+    <style>
+      /* UNIVERSAL RESET - applies to ALL elements */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-    }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
+          sans-serif;
+      }
 
-    /* SITE HEADER - the entire top section */
-    .site-header {
-      background: #fff;
-      padding: 20px 0;
-      border-bottom: 1px solid #eee;
-    }
+      /* SITE HEADER - the entire top section */
+      .site-header {
+        background: #fff;
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+      }
 
-    /* HEADER CONTENT CONTAINER - holds logo, search bar, and icons */
-    .headerContent-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 60px;
-      gap: 40px;
-      width: 100%;
-    }
+      /* HEADER CONTENT CONTAINER - holds logo, search bar, and icons */
+      .headerContent-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 60px;
+        gap: 40px;
+        width: 100%;
+      }
 
-    /* LOGO - the "LUMINA" heading */
-    .logo {
-      font-size: 32px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
+      /* LOGO - the "LUMINA" heading */
+      .logo {
+        font-size: 32px;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
 
-    /* SEARCH BAR - the input field */
-    .search-bar {
-      flex: 1;
-      max-width: 700px;
-      padding: 12px 20px;
-      border: 1px solid #ccc;
-      border-radius: 24px;
-      font-size: 16px;
-    }
+      /* SEARCH BAR - the input field */
+      .search-bar {
+        flex: 1;
+        max-width: 700px;
+        padding: 12px 20px;
+        border: 1px solid #ccc;
+        border-radius: 24px;
+        font-size: 16px;
+      }
 
-    /* HEADER ICONS - container for reorder, account, and cart */
-    .header-icons {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
+      /* HEADER ICONS - container for reorder, account, and cart */
+      .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
 
-    /* INDIVIDUAL ICON GROUPS - reorder, account, cart */
-    .header-icons > div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      font-size: 12px;
-    }
+      /* INDIVIDUAL ICON GROUPS - reorder, account, cart */
+      .header-icons > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        font-size: 12px;
+      }
 
-    /* TEXT LABELS under icons */
-    .reorder span,
-    .account span {
-      line-height: 1.3;
-    }
+      /* TEXT LABELS under icons */
+      .reorder span,
+      .account span {
+        line-height: 1.3;
+      }
 
-    /* ACCOUNT IMAGE - the profile picture */
-    .account img {
-      width: 60px;
-      height: 40px;
-      margin-bottom: 4px;
-      background: #ddd;
-    }
+      /* ACCOUNT IMAGE - the profile picture */
+      .account img {
+        width: 60px;
+        height: 40px;
+        margin-bottom: 4px;
+        background: #ddd;
+      }
 
-    /* CART ICON CONTAINER - needs special positioning for the badge */
-    .cart-icon {
-      position: relative;
-    }
+      /* CART ICON CONTAINER - needs special positioning for the badge */
+      .cart-icon {
+        position: relative;
+      }
 
-    /* CART LINK - wrapper around cart image */
-    .cart-icon a {
-      position: relative;
-      display: inline-block;
-    }
+      /* CART LINK - wrapper around cart image */
+      .cart-icon a {
+        position: relative;
+        display: inline-block;
+      }
 
-    /* CART IMAGE */
-    .cart-icon img {
-      width: 60px;
-      height: 55px;
-      margin-bottom: 4px;
-      display: block;
-    }
+      /* CART IMAGE */
+      .cart-icon img {
+        width: 60px;
+        height: 55px;
+        margin-bottom: 4px;
+        display: block;
+      }
 
-    /* CART COUNT BADGE - the red circle with number */
-    .cart-count {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background: #ff4444;
-      color: white;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: bold;
-    }
+      /* CART COUNT BADGE - the red circle with number */
+      .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ff4444;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: bold;
+      }
 
-    /* MAIN NAVIGATION - Site-wide pages */
-    .main-nav {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 15px 0;
-      background: #f8f8f8;
-    }
+      /* MAIN NAVIGATION - Site-wide pages */
+      .main-nav {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding: 15px 0;
+        background: #f8f8f8;
+      }
 
-    .main-nav a {
-      text-decoration: none;
-      color: #333;
-      font-size: 16px;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
+      .main-nav a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        font-weight: 600;
+        transition: color 0.3s;
+      }
 
-    .main-nav a:hover {
-      color: #667eea;
-    }
+      .main-nav a:hover {
+        color: #667eea;
+      }
 
-    /* CATEGORY NAVIGATION - Product categories */
-    .category-nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 12px 0;
-      background: #fff;
-      border-bottom: 1px solid #eee;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
+      /* CATEGORY NAVIGATION - Product categories */
+      .category-nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 12px 0;
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
 
-    .category-nav a {
-      text-decoration: none;
-      color: #666;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.3s;
-      padding: 5px 10px;
-      border-radius: 4px;
-    }
+      .category-nav a {
+        text-decoration: none;
+        color: #666;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.3s;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
 
-    .category-nav a:hover {
-      color: #667eea;
-      background: #f5f5f5;
-    }
+      .category-nav a:hover {
+        color: #667eea;
+        background: #f5f5f5;
+      }
 
-    /* HOME PAGE STYLES */
-    .home-container {
-      width: 85%;
-      margin: 0 auto;
-      padding: 20px 0;
-    }
+      /* HOME PAGE STYLES */
+      .home-container {
+        width: 85%;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
 
-    /* HERO SLIDER */
+      /* HERO SLIDER */
 
-     /* <section class="slider-container">
+      /* <section class="slider-container">
         
         <div class="slide active">
           <div class="slide-content">
@@ -200,691 +201,757 @@
         </div>
       </section> */
 
-    .hero-slider {
-      position: relative;
-      width: 100%;
-      height: 500px;
-      margin-bottom: 60px;
-      overflow: hidden; /* Hide overflow to prevent scrollbars */
-      border-radius: 12px;
-    }
-
-    .slider-container {
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-
-    .slide:nth-child(2) {
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    }
-
-    .slide:nth-child(3) {
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    }
-
-    .slide.active {
-      opacity: 1;
-    }
-
-    .slide-content {
-      text-align: center;
-      color: white;
-      padding: 40px;
-    }
-
-    .slide-content h2 {
-      font-size: 48px;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-
-    .slide-content p {
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
-
-    .cta-button {
-      background: white;
-      color: #333;
-      border: none;
-      padding: 15px 40px;
-      font-size: 18px;
-      font-weight: 600;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    /* Slider Controls */
-    .slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.3);
-      border: none;
-      color: white;
-      font-size: 24px;
-      padding: 15px 20px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-
-    .slider-btn:hover {
-      background: rgba(255,255,255,0.5);
-    }
-
-    .slider-btn.prev {
-      left: 20px;
-    }
-
-    .slider-btn.next {
-      right: 20px;
-    }
-
-    /* Slider Dots */
-    .slider-dots {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .dot.active {
-      background: white;
-    }
-
-    /* CATEGORIES SECTION */
-    .categories-section {
-      margin-bottom: 60px;
-    }
-
-    .section-title {
-      font-size: 32px;
-      text-align: center;
-      margin-bottom: 40px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 30px;
-    }
-
-    .category-card {
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .category-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .category-image {
-      width: 100%;
-      height: 200px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .category-icon {
-      font-size: 60px;
-    }
-
-    .category-card h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-      color: #333;
-    }
-
-    .category-card p {
-      font-size: 13px;
-      color: #666;
-    }
-
-    /* FEATURED PRODUCTS SECTION */
-    .featured-section {
-      margin-bottom: 60px;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
-    }
-
-    .product-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-
-    .product-image {
-      width: 100%;
-      height: 250px;
-      background: #f5f5f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 60px;
-    }
-
-    .product-info {
-      padding: 20px;
-    }
-
-    .product-name {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #333;
-    }
-
-    .product-price {
-      font-size: 22px;
-      color: #667eea;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    .product-rating {
-      font-size: 14px;
-      color: #ffa500;
-      margin-bottom: 10px;
-    }
-
-    .add-to-cart-btn {
-      width: 100%;
-      background: #667eea;
-      color: white;
-      border: none;
-      padding: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .add-to-cart-btn:hover {
-      background: #5568d3;
-    }
-
-    /* FOOTER */
-    .site-footer {
-      background: #333;
-      color: white;
-      padding: 40px 0 20px;
-      margin-top: 60px;
-    }
-
-    .footer-content {
-      width: 85%;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      margin-bottom: 30px;
-    }
-
-    .footer-section h4 {
-      font-size: 18px;
-      margin-bottom: 15px;
-    }
-
-    .footer-section ul {
-      list-style: none;
-    }
-
-    .footer-section ul li {
-      margin-bottom: 8px;
-    }
-
-    .footer-section a {
-      color: #ccc;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer-section a:hover {
-      color: white;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 15px;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid #555;
-      color: #999;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      .categories-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .categories-grid,
-      .products-grid,
-      .footer-content {
-        grid-template-columns: 1fr;
-      }
-      
       .hero-slider {
-        height: 350px;
+        position: relative;
+        width: 100%;
+        height: 500px;
+        margin-bottom: 60px;
+        overflow: hidden; /* Hide overflow to prevent scrollbars */
+        border-radius: 12px;
       }
-      
-      .slide-content h2 {
-        font-size: 32px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="headerContent-container">
-      <h1 class="logo">LUMINA</h1>
-      
-      <input
-        class="search-bar"
-        type="text"
-        id="search-input"
-        placeholder="Search products..."
-      />
 
-      <div class="header-icons">
-        <div class="reorder">
-          <span>Reorder</span>
-          <span>My Items</span>
-        </div>
-      
-        <div class="account">
-          <a href="#">
-            <div style="width: 60px; height: 40px; background: #e0e0e0; border-radius: 50%; margin-bottom: 4px;"></div>
-          </a>
-          <span>Sign In</span>
-          <span>Account</span>
-        </div>
-        
-        <div class="cart-icon">
-          <a href="#">
-            <div style="width: 60px; height: 55px; background: #e0e0e0; border-radius: 8px; margin-bottom: 4px;"></div>
-            <span class="cart-count">0</span>
-          </a>
+      .slider-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .slide:nth-child(2) {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+
+      .slide:nth-child(3) {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+
+      .slide.active {
+        opacity: 1;
+      }
+
+      .slide-content {
+        text-align: center;
+        color: white;
+        padding: 40px;
+      }
+
+      .slide-content h2 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+
+      .slide-content p {
+        font-size: 24px;
+        margin-bottom: 30px;
+      }
+
+      .cta-button {
+        background: white;
+        color: #333;
+        border: none;
+        padding: 15px 40px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Slider Controls */
+      .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.3);
+        border: none;
+        color: white;
+        font-size: 24px;
+        padding: 15px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+
+      .slider-btn:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .slider-btn.prev {
+        left: 20px;
+      }
+
+      .slider-btn.next {
+        right: 20px;
+      }
+
+      /* Slider Dots */
+      .slider-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .dot.active {
+        background: white;
+      }
+
+      /* CATEGORIES SECTION */
+      .categories-section {
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
+      }
+
+      .category-card {
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .category-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .category-image {
+        width: 100%;
+        height: 200px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .category-icon {
+        font-size: 60px;
+      }
+
+      .category-card h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .category-card p {
+        font-size: 13px;
+        color: #666;
+      }
+
+      /* FEATURED PRODUCTS SECTION */
+      .featured-section {
+        margin-bottom: 60px;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 250px;
+        background: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+      }
+
+      .product-info {
+        padding: 20px;
+      }
+
+      .product-name {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .product-price {
+        font-size: 22px;
+        color: #667eea;
+        font-weight: bold;
+        margin-bottom: 12px;
+      }
+
+      .product-rating {
+        font-size: 14px;
+        color: #ffa500;
+        margin-bottom: 10px;
+      }
+
+      .add-to-cart-btn {
+        width: 100%;
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .add-to-cart-btn:hover {
+        background: #5568d3;
+      }
+
+      /* FOOTER */
+      .site-footer {
+        background: #333;
+        color: white;
+        padding: 40px 0 20px;
+        margin-top: 60px;
+      }
+
+      .footer-content {
+        width: 85%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-bottom: 30px;
+      }
+
+      .footer-section h4 {
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 8px;
+      }
+
+      .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section a:hover {
+        color: white;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #555;
+        color: #999;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1024px) {
+        .categories-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .products-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .categories-grid,
+        .products-grid,
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-slider {
+          height: 350px;
+        }
+
+        .slide-content h2 {
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="headerContent-container">
+        <h1 class="logo">LUMINA</h1>
+
+        <input
+          class="search-bar"
+          type="text"
+          id="search-input"
+          placeholder="Search products..."
+        />
+
+        <div class="header-icons">
+          <div class="reorder">
+            <span>Reorder</span>
+            <span>My Items</span>
+          </div>
+
+          <div class="account">
+            <a href="#">
+              <div
+                style="
+                  width: 60px;
+                  height: 40px;
+                  background: #e0e0e0;
+                  border-radius: 50%;
+                  margin-bottom: 4px;
+                "
+              ></div>
+            </a>
+            <span>Sign In</span>
+            <span>Account</span>
+          </div>
+
+          <div class="cart-icon">
+            <a href="#">
+              <div
+                style="
+                  width: 60px;
+                  height: 55px;
+                  background: #e0e0e0;
+                  border-radius: 8px;
+                  margin-bottom: 4px;
+                "
+              ></div>
+              <span class="cart-count">0</span>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <nav class="main-nav">
-      <a href="HomePage.html">Home</a>
-      <a href="ShopCartPage.html">Shop</a>
-      <a href="AboutPage.html">About Us</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    
-    <nav class="category-nav" id="category-nav">
-      <!-- Categories will be loaded here dynamically -->
-    </nav>
-  </header>
+      <nav class="main-nav">
+        <a href="HomePage.html">Home</a>
+        <a href="ShopCartPage.html">Shop</a>
+        <a href="AboutPage.html">About Us</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-  <!-- Main Content -->
-  <main class="home-container">
-    
-    <!-- Hero Slider Section -->
-    <section class="hero-slider">
-      <section class="slider-container">
-        
-        <div class="slide active">
-          <div class="slide-content">
-            <h2>Summer Collection 2024</h2>
-            <p>Discover the latest trends in fashion</p>
-            <button class="cta-button">Shop Now</button>
+      <nav class="category-nav" id="category-nav">
+        <!-- Categories will be loaded here dynamically -->
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="home-container">
+      <!-- Hero Slider Section -->
+      <section class="hero-slider">
+        <section class="slider-container">
+          <div class="slide active">
+            <div class="slide-content">
+              <h2>Summer Collection 2024</h2>
+              <p>Discover the latest trends in fashion</p>
+              <button class="cta-button">Shop Now</button>
+            </div>
           </div>
-        </div>
 
-        <div class="slide">
-          <div class="slide-content">
-            <h2>Up to 50% Off</h2>
-            <p>Limited time offer on selected items</p>
-            <button class="cta-button">View Deals</button>
+          <div class="slide">
+            <div class="slide-content">
+              <h2>Up to 50% Off</h2>
+              <p>Limited time offer on selected items</p>
+              <button class="cta-button">View Deals</button>
+            </div>
           </div>
-        </div>
 
-        <div class="slide">
-          <div class="slide-content">
-            <h2>New Arrivals</h2>
-            <p>Fresh styles just landed</p>
-            <button class="cta-button">Explore Now</button>
+          <div class="slide">
+            <div class="slide-content">
+              <h2>New Arrivals</h2>
+              <p>Fresh styles just landed</p>
+              <button class="cta-button">Explore Now</button>
+            </div>
           </div>
+        </section>
+
+        <!-- Slider Controls -->
+        <button class="slider-btn prev" onclick="changeSlide(-1)">❮</button>
+        <button class="slider-btn next" onclick="changeSlide(1)">❯</button>
+
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+          <span class="dot active" onclick="currentSlide(0)"></span>
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
         </div>
       </section>
-      
-      <!-- Slider Controls -->
-      <button class="slider-btn prev" onclick="changeSlide(-1)">❮</button>
-      <button class="slider-btn next" onclick="changeSlide(1)">❯</button>
-      
-      <!-- Slider Dots -->
-      <div class="slider-dots">
-        <span class="dot active" onclick="currentSlide(0)"></span>
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-      </div>
-    </section>
 
-    <!-- Shop by Category Section -->
-    <section class="categories-section">
-      <h2 class="section-title">Shop by Category</h2>
-      <div class="categories-grid" id="categories-container">
-        <!-- Categories will be loaded here from XML -->
-      </div>
-    </section>
+      <!-- Shop by Category Section -->
+      <section class="categories-section">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="categories-grid" id="categories-container">
+          <!-- Categories will be loaded here from XML -->
+        </div>
+      </section>
 
-    <!-- Featured Products Section -->
-    <section class="featured-section">
-      <h2 class="section-title">Featured Products</h2>
-      <div class="products-grid" id="featured-products">
-        <!-- Products will be loaded here by JavaScript -->
-      </div>
-    </section>
+      <!-- Featured Products Section -->
+      <section class="featured-section">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid" id="featured-products">
+          <!-- Products will be loaded here by JavaScript -->
+        </div>
+      </section>
+    </main>
 
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>About LUMINA</h4>
-        <p>Your destination for quality products and exceptional service.</p>
-      </div>
-      <div class="footer-section">
-        <h4>Customer Service</h4>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Shipping Info</a></li>
-          <li><a href="#">Returns</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Follow Us</h4>
-        <div class="social-links">
-          <a href="#">Facebook</a>
-          <a href="#">Instagram</a>
-          <a href="#">Twitter</a>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About LUMINA</h4>
+          <p>Your destination for quality products and exceptional service.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Customer Service</h4>
+          <ul>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 LUMINA. All rights reserved.</p>
-    </div>
-  </footer>
+      <div class="footer-bottom">
+        <p>&copy; 2024 LUMINA. All rights reserved.</p>
+      </div>
+    </footer>
 
-  <script>
-    // Category data with icons and descriptions
-    const categoryInfo = {
-      'Electronics': { icon: '📱', description: 'Latest tech and gadgets', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
-      'Home & Kitchen': { icon: '🏠', description: 'Essential home items', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
-      'Sports & Outdoors': { icon: '⚽', description: 'Gear for active lifestyle', gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
-      'Beauty & Personal Care': { icon: '💄', description: 'Look and feel your best', gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)' },
-      'Toys & Games': { icon: '🎮', description: 'Fun for all ages', gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
-      'Clothing': { icon: '👕', description: 'Fashion for everyone', gradient: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)' },
-      'Automotive': { icon: '🚗', description: 'Car care and accessories', gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)' },
-      'Office Supplies': { icon: '📎', description: 'Workspace essentials', gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)' },
-      'Garden & Outdoors': { icon: '🌱', description: 'Outdoor living made easy', gradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)' },
-      'Pet Supplies': { icon: '🐾', description: 'Everything for your pets', gradient: 'linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)' }
-    };
+    <script>
+      // Category data with icons and descriptions
+      const categoryInfo = {
+        Electronics: {
+          icon: "📱",
+          description: "Latest tech and gadgets",
+          gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        },
+        "Home & Kitchen": {
+          icon: "🏠",
+          description: "Essential home items",
+          gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        },
+        "Sports & Outdoors": {
+          icon: "⚽",
+          description: "Gear for active lifestyle",
+          gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+        },
+        "Beauty & Personal Care": {
+          icon: "💄",
+          description: "Look and feel your best",
+          gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+        },
+        "Toys & Games": {
+          icon: "🎮",
+          description: "Fun for all ages",
+          gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+        },
+        Clothing: {
+          icon: "👕",
+          description: "Fashion for everyone",
+          gradient: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+        },
+        Automotive: {
+          icon: "🚗",
+          description: "Car care and accessories",
+          gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+        },
+        "Office Supplies": {
+          icon: "📎",
+          description: "Workspace essentials",
+          gradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+        },
+        "Garden & Outdoors": {
+          icon: "🌱",
+          description: "Outdoor living made easy",
+          gradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+        },
+        "Pet Supplies": {
+          icon: "🐾",
+          description: "Everything for your pets",
+          gradient: "linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)",
+        },
+      };
 
-    // Mock product data
-    const featuredProducts = [
-      {
-        id: 1,
-        name: "Wireless Headphones",
-        price: 79.99,
-        rating: 4.5,
-        image: "🎧",
-        category: "Electronics"
-      },
-      {
-        id: 2,
-        name: "Coffee Maker",
-        price: 89.99,
-        rating: 4.8,
-        image: "☕",
-        category: "Home & Kitchen"
-      },
-      {
-        id: 3,
-        name: "Yoga Mat",
-        price: 29.99,
-        rating: 4.7,
-        image: "🧘",
-        category: "Sports & Outdoors"
-      },
-      {
-        id: 4,
-        name: "Face Cream Set",
-        price: 39.99,
-        rating: 4.6,
-        image: "🧴",
-        category: "Beauty & Personal Care"
-      },
-      {
-        id: 5,
-        name: "Board Game Collection",
-        price: 45.99,
-        rating: 4.4,
-        image: "🎲",
-        category: "Toys & Games"
-      },
-      {
-        id: 6,
-        name: "Denim Jacket",
-        price: 65.99,
-        rating: 4.9,
-        image: "🧥",
-        category: "Clothing"
-      },
-      {
-        id: 7,
-        name: "Car Phone Mount",
-        price: 19.99,
-        rating: 4.5,
-        image: "📱",
-        category: "Automotive"
-      },
-      {
-        id: 8,
-        name: "Desk Organizer",
-        price: 24.99,
-        rating: 4.8,
-        image: "📋",
-        category: "Office Supplies"
-      }
-    ];
-
-    // Load categories (mock version since we can't fetch XML in artifact)
-    function loadCategories() {
-      const categories = [
-        'Electronics', 'Home & Kitchen', 'Sports & Outdoors', 
-        'Beauty & Personal Care', 'Toys & Games', 'Clothing',
-        'Automotive', 'Office Supplies', 'Garden & Outdoors', 'Pet Supplies'
+      // Mock product data
+      const featuredProducts = [
+        {
+          id: 1,
+          name: "Wireless Headphones",
+          price: 79.99,
+          rating: 4.5,
+          image: "🎧",
+          category: "Electronics",
+        },
+        {
+          id: 2,
+          name: "Coffee Maker",
+          price: 89.99,
+          rating: 4.8,
+          image: "☕",
+          category: "Home & Kitchen",
+        },
+        {
+          id: 3,
+          name: "Yoga Mat",
+          price: 29.99,
+          rating: 4.7,
+          image: "🧘",
+          category: "Sports & Outdoors",
+        },
+        {
+          id: 4,
+          name: "Face Cream Set",
+          price: 39.99,
+          rating: 4.6,
+          image: "🧴",
+          category: "Beauty & Personal Care",
+        },
+        {
+          id: 5,
+          name: "Board Game Collection",
+          price: 45.99,
+          rating: 4.4,
+          image: "🎲",
+          category: "Toys & Games",
+        },
+        {
+          id: 6,
+          name: "Denim Jacket",
+          price: 65.99,
+          rating: 4.9,
+          image: "🧥",
+          category: "Clothing",
+        },
+        {
+          id: 7,
+          name: "Car Phone Mount",
+          price: 19.99,
+          rating: 4.5,
+          image: "📱",
+          category: "Automotive",
+        },
+        {
+          id: 8,
+          name: "Desk Organizer",
+          price: 24.99,
+          rating: 4.8,
+          image: "📋",
+          category: "Office Supplies",
+        },
       ];
-      
-      const categoryNav = document.getElementById('category-nav');
-      const container = document.getElementById('categories-container');
-      
-      categories.forEach(categoryName => {
-        const info = categoryInfo[categoryName];
-        
-        // Add to navigation bar
-        const navLink = document.createElement('a');
-        navLink.href = '#';
-        navLink.textContent = categoryName;
-        navLink.onclick = (e) => {
-          e.preventDefault();
-          goToCategory(categoryName);
-        };
-        categoryNav.appendChild(navLink);
-        
-        // Add to category cards section
-        const categoryCard = document.createElement('div');
-        categoryCard.className = 'category-card';
-        categoryCard.onclick = () => goToCategory(categoryName);
-        
-        categoryCard.innerHTML = `
+
+      // Load categories (mock version since we can't fetch XML in artifact)
+      function loadCategories() {
+        const categories = [
+          "Electronics",
+          "Home & Kitchen",
+          "Sports & Outdoors",
+          "Beauty & Personal Care",
+          "Toys & Games",
+          "Clothing",
+          "Automotive",
+          "Office Supplies",
+          "Garden & Outdoors",
+          "Pet Supplies",
+        ];
+
+        const categoryNav = document.getElementById("category-nav");
+        const container = document.getElementById("categories-container");
+
+        categories.forEach((categoryName) => {
+          const info = categoryInfo[categoryName];
+
+          // Add to navigation bar
+          const navLink = document.createElement("a");
+          navLink.href = "#";
+          navLink.textContent = categoryName;
+          navLink.onclick = (e) => {
+            e.preventDefault();
+            goToCategory(categoryName);
+          };
+          categoryNav.appendChild(navLink);
+
+          // Add to category cards section
+          const categoryCard = document.createElement("div");
+          categoryCard.className = "category-card";
+          categoryCard.onclick = () => goToCategory(categoryName);
+
+          categoryCard.innerHTML = `
           <div class="category-image" style="background: ${info.gradient};">
             <span class="category-icon">${info.icon}</span>
           </div>
           <h3>${categoryName}</h3>
           <p>${info.description}</p>
         `;
-        
-        container.appendChild(categoryCard);
-      });
-    }
 
-    // Hero Slider functionality
-    let currentSlideIndex = 0;
-
-    function changeSlide(direction) {
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.dot');
-      
-      slides[currentSlideIndex].classList.remove('active');
-      dots[currentSlideIndex].classList.remove('active');
-      
-      currentSlideIndex += direction;
-      
-      if (currentSlideIndex >= slides.length) {
-        currentSlideIndex = 0;
-      } else if (currentSlideIndex < 0) {
-        currentSlideIndex = slides.length - 1;
+          container.appendChild(categoryCard);
+        });
       }
-      
-      slides[currentSlideIndex].classList.add('active');
-      dots[currentSlideIndex].classList.add('active');
-    }
 
-    function currentSlide(index) {
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.dot');
-      
-      slides[currentSlideIndex].classList.remove('active');
-      dots[currentSlideIndex].classList.remove('active');
-      
-      currentSlideIndex = index;
-      
-      slides[currentSlideIndex].classList.add('active');
-      dots[currentSlideIndex].classList.add('active');
-    }
+      // Hero Slider functionality
+      let currentSlideIndex = 0;
 
-    // Auto-advance slider every 5 seconds
-    setInterval(() => {
-      changeSlide(1);
-    }, 5000);
+      function changeSlide(direction) {
+        const slides = document.querySelectorAll(".slide");
+        const dots = document.querySelectorAll(".dot");
 
-    // Load featured products
-    function loadFeaturedProducts() {
-      const container = document.getElementById('featured-products');
-      
-      featuredProducts.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        productCard.onclick = () => goToProduct(product.id);
-        
-        productCard.innerHTML = `
+        slides[currentSlideIndex].classList.remove("active");
+        dots[currentSlideIndex].classList.remove("active");
+
+        currentSlideIndex += direction;
+
+        if (currentSlideIndex >= slides.length) {
+          currentSlideIndex = 0;
+        } else if (currentSlideIndex < 0) {
+          currentSlideIndex = slides.length - 1;
+        }
+
+        slides[currentSlideIndex].classList.add("active");
+        dots[currentSlideIndex].classList.add("active");
+      }
+
+      function currentSlide(index) {
+        const slides = document.querySelectorAll(".slide");
+        const dots = document.querySelectorAll(".dot");
+
+        slides[currentSlideIndex].classList.remove("active");
+        dots[currentSlideIndex].classList.remove("active");
+
+        currentSlideIndex = index;
+
+        slides[currentSlideIndex].classList.add("active");
+        dots[currentSlideIndex].classList.add("active");
+      }
+
+      // Auto-advance slider every 5 seconds
+      setInterval(() => {
+        changeSlide(1);
+      }, 5000);
+
+      // Load featured products
+      function loadFeaturedProducts() {
+        const container = document.getElementById("featured-products");
+
+        featuredProducts.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.className = "product-card";
+          productCard.onclick = () => goToProduct(product.id);
+
+          productCard.innerHTML = `
           <div class="product-image">${product.image}</div>
           <div class="product-info">
             <div class="product-name">${product.name}</div>
             <div class="product-price">$${product.price.toFixed(2)}</div>
-            <div class="product-rating">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))} ${product.rating}</div>
-            <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${product.id})">Add to Cart</button>
+            <div class="product-rating">${"★".repeat(
+              Math.floor(product.rating)
+            )}${"☆".repeat(5 - Math.floor(product.rating))} ${
+            product.rating
+          }</div>
+            <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${
+              product.id
+            })">Add to Cart</button>
           </div>
         `;
-        
-        container.appendChild(productCard);
+
+          container.appendChild(productCard);
+        });
+      }
+
+      // Navigation functions
+      function goToCategory(category) {
+        console.log("Navigate to category:", category);
+        alert(`Navigating to ${category} category`);
+      }
+
+      function goToProduct(id) {
+        console.log("Navigate to product:", id);
+        alert(`Navigating to product ${id}`);
+      }
+
+      function addToCart(id) {
+        const product = featuredProducts.find((p) => p.id === id);
+        console.log("Added to cart:", product);
+        alert(`Added ${product.name} to cart!`);
+
+        // Update cart count
+        const cartCount = document.querySelector(".cart-count");
+        cartCount.textContent = parseInt(cartCount.textContent) + 1;
+      }
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", () => {
+        loadCategories();
+        loadFeaturedProducts();
       });
-    }
-
-    // Navigation functions
-    function goToCategory(category) {
-      console.log('Navigate to category:', category);
-      alert(`Navigating to ${category} category`);
-    }
-
-    function goToProduct(id) {
-      console.log('Navigate to product:', id);
-      alert(`Navigating to product ${id}`);
-    }
-
-    function addToCart(id) {
-      const product = featuredProducts.find(p => p.id === id);
-      console.log('Added to cart:', product);
-      alert(`Added ${product.name} to cart!`);
-      
-      // Update cart count
-      const cartCount = document.querySelector('.cart-count');
-      cartCount.textContent = parseInt(cartCount.textContent) + 1;
-    }
-
-    // Initialize page
-    document.addEventListener('DOMContentLoaded', () => {
-      loadCategories();
-      loadFeaturedProducts();
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>

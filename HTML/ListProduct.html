@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Listing - LUMINA</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../CSS/ListProductStyle.css" />
+    <script src="../Javascript/ListProductScript.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-top">
+        <div class="logo">LUMINA</div>
+        <div class="header-center">
+          <input
+            type="text"
+            class="search-bar"
+            placeholder="Search products..."
+          />
+          <i class="fas fa-shopping-cart cart-icon"></i>
+        </div>
+        <nav class="header-nav">
+          <a href="#">Women</a>
+          <a href="#">Men</a>
+          <a href="#">Men</a>
+          <a href="#">Sale</a>
+        </nav>
+      </div>
+      <div class="secondary-nav">
+        <a href="#">New Arrivals</a>
+        <a href="#" style="font-weight: bold">CLOTHING</a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <!-- Sidebar Filters -->
+      <aside class="sidebar">
+        <h3>FILTERS</h3>
+
+        <!-- Price Filter -->
+        <div class="filter-group">
+          <div class="filter-header">
+            <span>Price (Low-High)</span>
+            <i class="fas fa-chevron-up"></i>
+          </div>
+          <div class="filter-options">
+            <div class="price-range-inputs">
+              <span>$</span>
+              <input type="number" id="min-price" value="0" min="0" />
+              <span>-</span>
+              <input type="number" id="max-price" value="200" min="0" />
+              <button id="apply-price">›</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-group">
+          <div class="filter-header">
+            <span>Category</span>
+            <i class="fas fa-chevron-up"></i>
+          </div>
+          <div class="filter-options" id="category-filters"></div>
+        </div>
+
+        <!-- Size Filter (collapsed by default) -->
+        <div class="filter-group">
+          <div class="filter-header collapsed">
+            <span>Size</span>
+            <i class="fas fa-chevron-up"></i>
+          </div>
+        </div>
+
+        <!-- Color Filter (collapsed by default) -->
+        <div class="filter-group">
+          <div class="filter-header collapsed">
+            <span>Color</span>
+            <i class="fas fa-chevron-up"></i>
+          </div>
+        </div>
+
+        <!-- Price Filter 2 (collapsed by default) -->
+        <div class="filter-group">
+          <div class="filter-header collapsed">
+            <span>Price</span>
+            <i class="fas fa-chevron-up"></i>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Products Section -->
+      <main class="products-section">
+        <div id="products-container" class="loading">
+          <i class="fas fa-spinner fa-spin"></i> Loading products...
+        </div>
+
+        <div class="pagination" id="pagination" style="display: none"></div>
+      </main>
+    </div>
+  </body>
+</html>
