@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail - LUMINA</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../CSS/ProductDetailStyle.css" />
+    <script src="../Javascript/ProductDetailScript.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-container">
+        <h1 class="logo">
+          <a href="HomePage.html">LUMINA</a>
+        </h1>
+
+        <div class="header-center">
+          <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input
+              class="search-bar"
+              type="text"
+              id="search-input"
+              placeholder="Search products..."
+            />
+          </div>
+        </div>
+
+        <div class="header-icons">
+          <div class="account">
+            <a href="LoginPage.html">
+              <img src="../profile.png" alt="Account" />
+            </a>
+            <span>Sign In</span>
+          </div>
+
+          <div class="cart-icon">
+            <a href="ShopCartPage.html">
+              <img src="../shopping_cart.png" alt="Cart" />
+            </a>
+            <span class="cart-count">0</span>
+            <span>My Cart</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="HomePage.html">Home</a>
+        <a href="ListProduct.html">All Products</a>
+        <a href="AboutPage.html">About Us</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="product-detail-container">
+      <div class="product-layout">
+        <!-- Left Side - Product Image -->
+        <div class="product-images-section">
+          <div class="main-image">
+            <img id="main-product-image" src="" alt="Product" />
+          </div>
+        </div>
+
+        <!-- Right Side - Product Info -->
+        <div class="product-info-section">
+          <h1 class="product-title" id="product-title">Loading...</h1>
+
+          <div class="product-rating">
+            <div class="stars" id="product-stars"></div>
+            <span class="rating-text" id="rating-text"></span>
+          </div>
+
+          <div class="product-price" id="product-price">$0.00</div>
+
+          <!-- SKU and Availability -->
+          <div class="product-meta">
+            <div class="meta-item">
+              <span class="meta-label">SKU:</span>
+              <span class="meta-value" id="product-sku">-</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Availability:</span>
+              <span class="meta-value availability" id="product-availability"
+                >In Stock</span
+              >
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="description-section">
+            <h3 class="section-heading">Description</h3>
+            <div class="description-content" id="product-description">
+              <p>Loading product description...</p>
+            </div>
+          </div>
+
+          <!-- Quantity Selector -->
+          <div class="quantity-section">
+            <label class="quantity-label">Quantity</label>
+            <div class="quantity-selector">
+              <button class="qty-btn" id="qty-decrease">-</button>
+              <input
+                type="number"
+                id="quantity-input"
+                value="1"
+                min="1"
+                max="999"
+              />
+              <button class="qty-btn" id="qty-increase">+</button>
+            </div>
+          </div>
+
+          <!-- Add to Cart Button -->
+          <button class="add-to-cart-btn" id="add-to-cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Reviews Section -->
+      <section class="reviews-section">
+        <h2 class="section-title">Customer Reviews</h2>
+
+        <div class="reviews-summary">
+          <div class="summary-left">
+            <div class="average-rating" id="average-rating">0.0</div>
+            <div class="stars large" id="summary-stars"></div>
+            <div class="total-reviews" id="total-reviews">0 reviews</div>
+          </div>
+
+          <div class="rating-breakdown" id="rating-breakdown">
+            <!-- Rating bars will be populated by JS -->
+          </div>
+        </div>
+
+        <div class="reviews-list" id="reviews-list">
+          <!-- Reviews will be populated by JS -->
+        </div>
+      </section>
+
+      <!-- Related Products Section -->
+      <section class="related-products-section">
+        <h2 class="section-title">Related Products</h2>
+        <div class="related-products-grid" id="related-products">
+          <!-- Related products will be populated by JS -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-content">
+      <div class="container footer-container">
+        <div class="footer-section">
+          <h4>LUMINA</h4>
+          <p>Your trusted online shopping destination</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Email: info@lumina.com</p>
+          <p>Phone: (555) 123-4567</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

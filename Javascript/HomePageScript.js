@@ -1,45 +1,9 @@
-// function getCategories() {
-//     try {
+// CART MANAGEMENT
+// Initialize empty cart array to store products
+let cart = [];
 
-//         //fetch categories from XML file and process them as needed
-//         fetch("/jsonFiles/categories.xml").then((response) => {
-//             return response.text();//interpret response as text
-//         }).then((xmlData) => {
-//             //create DOM parser object
-//             const parser = new DOMParser();
-
-//             //convert text to document object
-//             const xmlDoc = parser.parseFromString(xmlData, "text/xml");
-
-//             //display categories in navigation
-//             displayCategory(xmlDoc);
-
-//         });
-//     } catch (error) {
-//         console.error("Error loading navigation:", error);
-//     }
-// }
-
-// function displayCategory(xmlDoc) {
-//     //get element in html
-//     const categoryNav = document.getElementById('category-nav');
-//     const getCategoryXML = xmlDoc.querySelectorAll("category");//get all category tag from XML
-
-//     for (let i = 0; i < getCategoryXML.length; i++) {
-//         const category = getCategoryXML[i];
-//         const name = category.querySelector("name").textContent;//get the name tag from XML
-
-//         //create nav link for each category
-//         const navLink = document.createElement('a');
-//         navLink.href = "ListProduct.html";
-//         navLink.textContent = name;
-
-//         categoryNav.appendChild(navLink);
-//     }
-// }
-// getCategories();
-
-// Define styles for each category
+// CATEGORY STYLES CONFIGURATION
+// Define visual styles (emoji and gradient colors) for each product category
 const categoryStyles = {
   Electronics: {
     emoji: "📱",
@@ -83,19 +47,26 @@ const categoryStyles = {
   },
 };
 
-// Function to fetch and process categories using jQuery
+// LOAD CATEGORIES FROM XML FILE
+/**
+ * Fetch categories from XML file using jQuery AJAX
+ * This function loads the categories.xml file and processes it
+ */
 function getCategoriesJQuery() {
   const filePath = "../jsonFiles/categories.xml";
 
+  // Make AJAX request to fetch XML file
   $.ajax({
     url: filePath,
-    dataType: "xml",
+    dataType: "xml", // Specify that we're expecting XML data
     method: "GET",
 
+    // Success callback - runs when XML is loaded successfully
     success: function (xmlDoc) {
       displayCategoryJQuery(xmlDoc);
     },
 
+    // Error callback - runs if there's a problem loading the XML
     error: function (jqXHR, textStatus, errorThrown) {
       console.error(
         "Error loading navigation or processing XML:",
@@ -107,38 +78,70 @@ function getCategoriesJQuery() {
   });
 }
 
-// Function to populate footer categories
+// POPULATE FOOTER WITH CATEGORIES
+/**
+ * Add category links to the footer section
+ * Shows only the first 5 categories
+ * @param {XMLDocument} xmlDoc - The loaded XML document containing categories
+ */
 function populateFooterCategories(xmlDoc) {
   const $footerCategories = $("#footer-categories");
   const $categories = $(xmlDoc).find("category");
 
-  // Limit to first 5 categories for the footer
+  // Loop through first 5 categories only
   $categories.slice(0, 5).each(function () {
     const $category = $(this);
     const categoryName = $category.find("name").text();
 
-    const $link = $("<a>").attr("href", "ListProduct.html").text(categoryName);
+    // Create clickable link for each category
+    const $link = $("<a>")
+      .attr("href", "#")
+      .text(categoryName)
+      .on("click", function (e) {
+        e.preventDefault(); // Prevent default link behavior
+        navigateToCategory(categoryName);
+      });
 
     $footerCategories.append($link);
   });
 }
 
-// Function to display categories using jQuery
+// NAVIGATION TO PRODUCT LIST PAGE
+/**
+ * Navigate to the product list page with selected category
+ * @param {string} categoryName - The name of the category to filter by
+ */
+function navigateToCategory(categoryName) {
+  // Redirect to ListProduct.html with category as URL parameter
+  window.location.href = `ListProduct.html?category=${encodeURIComponent(
+    categoryName
+  )}`;
+}
+
+// DISPLAY CATEGORY CARDS ON HOME PAGE
+/**
+ * Create and display category cards on the home page
+ * Each card shows an emoji icon and gradient background
+ * @param {XMLDocument} xmlDoc - The loaded XML document containing categories
+ */
 function displayCategoryJQuery(xmlDoc) {
   const $categoryNav = $(".categories-grid");
   const $categories = $(xmlDoc).find("category");
 
+  // Loop through each category from XML
   $categories.each(function () {
     const $category = $(this);
     const categoryName = $category.find("name").text();
 
+    // Get style for this category, or use default if not found
     const style = categoryStyles[categoryName] || {
       emoji: "📦",
       gradient: "linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)",
     };
 
+    // Create HTML for category card with gradient background and emoji
     const card = `
-      <a href="ListProduct.html" class="category-card-link">
+      <a href="#" class="category-card-link" data-category="${categoryName}">
         <div class="category-card" style="background: ${style.gradient}">
           <div class="category-icon">${style.emoji}</div>
           <h3 class="category-name">${categoryName}</h3>
@@ -149,10 +152,61 @@ function displayCategoryJQuery(xmlDoc) {
     $categoryNav.append(card);
   });
 
-  // Also populate footer categories
+  // Add click event handler to all category cards
+  $(".category-card-link").on("click", function (e) {
+    e.preventDefault();
+    const categoryName = $(this).data("category");
+    navigateToCategory(categoryName);
+  });
+
+  // Also add categories to footer
   populateFooterCategories(xmlDoc);
 }
 
+// LOAD SHOPPING CART FROM BROWSER STORAGE
+/**
+ * Load shopping cart data from localStorage
+ * This runs when the page loads to restore the user's cart
+ */
+function loadCart() {
+  try {
+    // Try to get cart data from localStorage
+    const savedCart = localStorage.getItem("lumina_cart");
+
+    if (savedCart) {
+      // Parse JSON string back into array
+      cart = JSON.parse(savedCart);
+      // Update the cart count badge in header
+      updateCartCount();
+    }
+  } catch (error) {
+    console.error("Error loading cart:", error);
+    cart = []; // Reset to empty cart if there's an error
+  }
+}
+
+// UPDATE CART COUNT BADGE
+/**
+ * Update the cart count badge in the header
+ * Shows total number of items in cart
+ */
+function updateCartCount() {
+  // Calculate total items by summing up all product quantities
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartCountElement = $(".cart-count");
+
+  // Update the badge text if element exists
+  if (cartCountElement.length) {
+    cartCountElement.text(totalItems);
+  }
+}
+
+// INITIALIZE PAGE WHEN DOM IS READY
+/**
+ * Run when the page has finished loading
+ * Initializes categories and cart
+ */
 $(document).ready(function () {
-  getCategoriesJQuery();
+  getCategoriesJQuery(); // Load and display categories
+  loadCart(); // Load cart from localStorage
 });
