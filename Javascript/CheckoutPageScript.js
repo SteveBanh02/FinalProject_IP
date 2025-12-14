@@ -1,5 +1,5 @@
 let cart = [];
-let shippingCost = 5.0;
+let shippingCost = 0.0; // Free shipping
 
 $(document).ready(function () {
   loadCart();
@@ -83,24 +83,13 @@ function displayCart() {
   });
 }
 
-// Update shipping cost
+// Update shipping cost (always free)
 function updateShippingCost(method) {
-  switch (method) {
-    case "standard":
-      shippingCost = 5.0;
-      break;
-    case "express":
-      shippingCost = 15.0;
-      break;
-    case "overnight":
-      shippingCost = 25.0;
-      break;
-    default:
-      shippingCost = 5.0;
-  }
+  // All shipping methods are now free
+  shippingCost = 0.0;
 
-  $("#shipping-cost").text(`$${shippingCost.toFixed(2)}`);
-  $("#shipping-display").text(`$${shippingCost.toFixed(2)}`);
+  $("#shipping-cost").text("FREE");
+  $("#shipping-display").text("FREE");
   calculateTotals();
 }
 
@@ -110,10 +99,12 @@ function calculateTotals() {
     return sum + parseFloat(item.price) * item.quantity;
   }, 0);
 
-  const total = subtotal + shippingCost;
+  const total = subtotal + shippingCost; // Will be same as subtotal since shipping is FREE
 
   $("#subtotal").text(`$${subtotal.toFixed(2)}`);
   $("#subtotal-display").text(`$${subtotal.toFixed(2)}`);
+  $("#shipping-cost").text("FREE");
+  $("#shipping-display").text("FREE");
   $("#total").text(`$${total.toFixed(2)}`);
 }
 
@@ -267,12 +258,12 @@ function placeOrder() {
       (sum, item) => sum + parseFloat(item.price) * item.quantity,
       0
     ),
-    shipping: shippingCost,
+    shipping: shippingCost, // This will be 0.0 (FREE)
     total:
       cart.reduce(
         (sum, item) => sum + parseFloat(item.price) * item.quantity,
         0
-      ) + shippingCost,
+      ) + shippingCost, // Total equals subtotal since shipping is FREE
   };
 
   // Store order data for confirmation page

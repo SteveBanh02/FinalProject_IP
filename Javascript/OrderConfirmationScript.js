@@ -37,11 +37,20 @@ function displayOrderConfirmation(order) {
   // Display cart items
   displayCartItems(order.cart);
 
-  // Display pricing
+  // Display pricing with FREE shipping
   $("#subtotal").text(`$${order.subtotal.toFixed(2)}`);
   $("#subtotal-display").text(`$${order.subtotal.toFixed(2)}`);
-  $("#shipping-cost").text(`$${order.shipping.toFixed(2)}`);
-  $("#shipping-display").text(`$${order.shipping.toFixed(2)}`);
+
+  // Display shipping as FREE
+  if (order.shipping === 0 || order.shipping === 0.0) {
+    $("#shipping-cost").text("FREE");
+    $("#shipping-display").text("FREE");
+  } else {
+    // Fallback in case old orders had shipping cost
+    $("#shipping-cost").text(`$${order.shipping.toFixed(2)}`);
+    $("#shipping-display").text(`$${order.shipping.toFixed(2)}`);
+  }
+
   $("#total").text(`$${order.total.toFixed(2)}`);
 
   // Display shipping method name
@@ -91,14 +100,14 @@ function generateOrderNumber() {
     .padStart(4, "0")}`;
 }
 
-// Get shipping method display name
+// Get shipping method display name (all are free now)
 function getShippingMethodName(method) {
   const methods = {
-    standard: "Standard Shipping",
-    express: "Express Shipping",
-    overnight: "Overnight Shipping",
+    standard: "Standard Shipping (FREE)",
+    express: "Express Shipping (FREE)",
+    overnight: "Overnight Shipping (FREE)",
   };
-  return methods[method] || "Standard Shipping";
+  return methods[method] || "Standard Shipping (FREE)";
 }
 
 // Mock send confirmation email

@@ -50,13 +50,22 @@ body {
   max-width: 600px;
 }
 
-.search-bar {
+/* .search-bar {
   flex: 1;
   padding: 10px 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
   transition: border-color 0.2s;
+} */
+
+.search-bar {
+  flex: 1;
+  max-width: 700px;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  font-size: 16px;
 }
 
 .search-bar:focus {

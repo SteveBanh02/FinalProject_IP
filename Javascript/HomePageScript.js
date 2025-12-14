@@ -1,14 +1,8 @@
-// ========================================
 // CART MANAGEMENT
-// ========================================
-
 // Initialize empty cart array to store products
 let cart = [];
 
-// ========================================
 // CATEGORY STYLES CONFIGURATION
-// ========================================
-
 // Define visual styles (emoji and gradient colors) for each product category
 const categoryStyles = {
   Electronics: {
@@ -53,17 +47,15 @@ const categoryStyles = {
   },
 };
 
-// ========================================
 // SEARCH FUNCTIONALITY
-// ========================================
-
 /**
  * Handle search input and redirect to product list page with search query
  */
 function handleSearch() {
   const searchInput = $("#search-input");
-  const searchQuery = searchInput.val().trim();
+  const searchQuery = searchInput.val().trim(); // Get trimmed search query
 
+  // Only proceed if search query is not empty
   if (searchQuery) {
     // Redirect to ListProduct page with search query parameter
     window.location.href = `ListProduct.html?search=${encodeURIComponent(
@@ -80,27 +72,20 @@ function initializeSearch() {
 
   // Handle Enter key press in search input
   searchInput.on("keypress", function (e) {
+    // Check if Enter key (key code 13) is pressed
     if (e.which === 13) {
       // Enter key
       e.preventDefault();
       handleSearch();
     }
   });
-
-  // Optional: Add search button if you want one
-  // You can add a search icon button next to the input field
-  searchInput.on("input", function () {
-    // You could add autocomplete suggestions here in the future
-  });
 }
 
-// ========================================
 // LOAD CATEGORIES FROM XML FILE
-// ========================================
-
 /**
  * Fetch categories from XML file using jQuery AJAX
  * This function loads the categories.xml file and processes it
+ * on success or logs errors on failure
  */
 function getCategoriesJQuery() {
   const filePath = "../jsonFiles/categories.xml";
@@ -128,10 +113,7 @@ function getCategoriesJQuery() {
   });
 }
 
-// ========================================
 // POPULATE FOOTER WITH CATEGORIES
-// ========================================
-
 /**
  * Add category links to the footer section
  * Shows only the first 5 categories
@@ -159,10 +141,7 @@ function populateFooterCategories(xmlDoc) {
   });
 }
 
-// ========================================
 // NAVIGATION TO PRODUCT LIST PAGE
-// ========================================
-
 /**
  * Navigate to the product list page with selected category
  * @param {string} categoryName - The name of the category to filter by
@@ -174,10 +153,7 @@ function navigateToCategory(categoryName) {
   )}`;
 }
 
-// ========================================
 // DISPLAY CATEGORY CARDS ON HOME PAGE
-// ========================================
-
 /**
  * Create and display category cards on the home page
  * Each card shows an emoji icon and gradient background
@@ -222,13 +198,11 @@ function displayCategoryJQuery(xmlDoc) {
   populateFooterCategories(xmlDoc);
 }
 
-// ========================================
 // LOAD SHOPPING CART FROM BROWSER STORAGE
-// ========================================
-
 /**
  * Load shopping cart data from localStorage
- * This runs when the page loads to restore the user's cart
+ * This runs when the page loads to restore
+ * the user's cart state
  */
 function loadCart() {
   try {
@@ -247,10 +221,7 @@ function loadCart() {
   }
 }
 
-// ========================================
 // UPDATE CART COUNT BADGE
-// ========================================
-
 /**
  * Update the cart count badge in the header
  * Shows total number of items in cart
@@ -266,10 +237,35 @@ function updateCartCount() {
   }
 }
 
-// ========================================
-// INITIALIZE PAGE WHEN DOM IS READY
-// ========================================
+// CHECK USER LOGIN STATUS
+/**
+ * Check if a user is logged in by looking for user data in localStorage
+ * If logged in, update the header to show user's name
+ */
+function checkUserLogin() {
+  try {
+    const userDataString = localStorage.getItem("lumina_user");
+    if (userDataString) {
+      const user = JSON.parse(userDataString);
+      // Get user name from the user object
+      const userName = user.name || user.email.split("@")[0];
 
+      // Update the account link to point to UserPage
+      $(".account a").attr("href", "UserPage.html");
+
+      // Update the text to show user name instead of "Sign In"
+      $(".account span").text(userName);
+
+      console.log("Updated header for user:", userName); // Debug log
+    } else {
+      console.log("No user logged in"); // Debug log
+    }
+  } catch (error) {
+    console.error("Error checking user login:", error);
+  }
+}
+
+// INITIALIZE PAGE WHEN DOM IS READY
 /**
  * Run when the page has finished loading
  * Initializes categories, cart, and search functionality
@@ -278,4 +274,5 @@ $(document).ready(function () {
   getCategoriesJQuery(); // Load and display categories
   loadCart(); // Load cart from localStorage
   initializeSearch(); // Initialize search functionality
+  checkUserLogin(); // Check if user is logged in
 });
