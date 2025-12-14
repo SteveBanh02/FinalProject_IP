@@ -119,21 +119,21 @@ function showTeamMemberDetails(memberName) {
   const teamDetails = {
     "Steve Banh": {
       name: "Steve Banh",
-      position: "CEO & Founder",
-      bio: "Steve founded LUMINA with a vision to revolutionize online shopping. With over 15 years of experience in e-commerce, he leads the company with passion and innovation.",
-      email: "steve.banh@lumina.com",
+      position: "Designer",
+      bio: "lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      email: "steve.banh@MyCanadaDeals.com",
     },
     "Luca Rag": {
       name: "Luca Rag",
-      position: "Lead Designer",
-      bio: "Luca brings creativity and elegance to every aspect of LUMINA's design. With a background in user experience and visual design, he ensures our platform is both beautiful and intuitive.",
-      email: "luca.rag@lumina.com",
+      position: "Designer",
+      bio: "lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      email: "luca.rag@MyCanadaDeals.com",
     },
     "Emily Davis": {
       name: "Emily Davis",
       position: "Head of Marketing",
-      bio: "Emily drives LUMINA's marketing strategy with innovative campaigns and customer engagement initiatives. Her expertise in digital marketing has helped grow our brand significantly.",
-      email: "emily.davis@lumina.com",
+      bio: "lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      email: "emily.davis@MyCanadaDeals.com",
     },
   };
 
@@ -286,10 +286,7 @@ function showTeamMemberDetails(memberName) {
   });
 }
 
-// ========================================
 // INITIALIZE PAGE WHEN DOM IS READY
-// ========================================
-
 /**
  * Run when the page has finished loading
  * Initializes search, cart, and team member interactions

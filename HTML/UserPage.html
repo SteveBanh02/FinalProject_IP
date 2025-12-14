@@ -4,27 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Account - LUMINA</title>
+
     <!-- Main styles -->
     <link rel="stylesheet" href="../CSS/HomePageStyle.css" />
     <!-- User page specific styles -->
     <link rel="stylesheet" href="../CSS/UserPageStyle.css" />
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- User page script -->
     <script src="../Javascript/UserPageScript.js"></script>
   </head>
 
   <body>
     <div class="container">
-      <!-- Header -->
+      <!-- HEADER -->
       <header class="site-header">
         <div class="headerContent-container">
           <h1 class="logo">
             <a
               href="HomePage.html"
               style="color: inherit; text-decoration: none"
-              >LUMINA</a
             >
+              LUMINA
+            </a>
           </h1>
 
           <input
@@ -36,35 +40,34 @@
 
           <div class="header-icons">
             <div class="account">
-              <a href="UserPage.html"
-                ><img src="../profile.png" alt="Account"
-              /></a>
+              <a href="UserPage.html">
+                <img src="../profile.png" alt="Account" />
+              </a>
               <span id="header-user-name">My Account</span>
             </div>
 
             <div class="cart-icon">
-              <a href="ShopCartPage.html"
-                ><img src="../shopping_cart.png" alt="Cart"
-              /></a>
+              <a href="ShopCartPage.html">
+                <img src="../shopping_cart.png" alt="Cart" />
+              </a>
               <span class="cart-count">0</span>
               <span>My Cart</span>
             </div>
           </div>
         </div>
 
-        <!-- Main Navigation -->
+        <!-- NAVIGATION -->
         <nav class="main-nav">
           <a href="HomePage.html">Home</a>
           <a href="ListProduct.html">Shop/Products</a>
           <a href="AboutPage.html">About Us</a>
-          <a href="#">Contact</a>
         </nav>
       </header>
 
-      <!-- Main Content -->
+      <!-- MAIN CONTENT -->
       <main class="user-page-container">
-        <!-- User Profile Card -->
         <div class="user-card">
+          <!-- USER HEADER -->
           <div class="user-header">
             <div class="user-avatar" id="user-avatar">U</div>
             <div class="user-info">
@@ -73,41 +76,29 @@
             </div>
           </div>
 
-          <!-- Account Information Section -->
+          <!-- ACCOUNT INFORMATION -->
           <div class="info-section">
             <h2>📧 Account Information</h2>
+
             <div class="info-row">
               <span class="info-label">Email Address</span>
-              <span class="info-value" id="email-value">user@example.com</span>
+              <span class="info-value" id="email-value">
+                user@example.com
+              </span>
             </div>
+
             <div class="info-row">
               <span class="info-label">Account Status</span>
               <span class="info-value status-active">Active</span>
             </div>
+
             <div class="info-row">
               <span class="info-label">Member Since</span>
               <span class="info-value" id="member-since">Today</span>
             </div>
           </div>
 
-          <!-- Quick Stats Section -->
-          <div class="info-section">
-            <h2>📊 Quick Stats</h2>
-            <div class="info-row">
-              <span class="info-label">Total Orders</span>
-              <span class="info-value">0</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Wishlist Items</span>
-              <span class="info-value">0</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">Loyalty Points</span>
-              <span class="info-value">0</span>
-            </div>
-          </div>
-
-          <!-- Action Buttons -->
+          <!-- ACTION BUTTONS -->
           <div class="action-buttons">
             <button
               class="btn btn-primary"
@@ -115,38 +106,20 @@
             >
               Continue Shopping
             </button>
+
             <button
               class="btn btn-secondary"
               onclick="navigateTo('ShopCartPage.html')"
             >
               View Cart
             </button>
-            <button class="btn btn-secondary" onclick="editProfile()">
-              Edit Profile
-            </button>
-            <button class="btn btn-logout" onclick="logout()">Logout</button>
-          </div>
-        </div>
 
-        <!-- Recent Orders Section (Placeholder) -->
-        <div class="user-card orders-section">
-          <h2>📦 Recent Orders</h2>
-          <p style="color: #666; text-align: center; padding: 20px">
-            You haven't placed any orders yet. Start shopping to see your orders
-            here!
-          </p>
-          <div style="text-align: center">
-            <button
-              class="btn btn-primary"
-              onclick="navigateTo('ListProduct.html')"
-            >
-              Browse Products
-            </button>
+            <button class="btn btn-logout" onclick="logout()">Logout</button>
           </div>
         </div>
       </main>
 
-      <!-- Footer -->
+      <!-- FOOTER -->
       <footer class="footer-content">
         <div class="container footer-container">
           <div class="footer-section">
@@ -178,13 +151,9 @@
               <input type="email" placeholder="Enter your email" required />
               <button type="submit">Subscribe</button>
             </form>
-            <div class="social-icons">
-              <i class="fa-brands fa-twitter"></i>
-              <i class="fa-brands fa-instagram"></i>
-              <i class="fa-brands fa-facebook"></i>
-            </div>
           </div>
         </div>
+
         <div
           style="
             text-align: center;

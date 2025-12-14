@@ -1,7 +1,42 @@
 $(document).ready(function () {
   loadOrderData();
   updateCartCount();
+  initializeSearch(); // Initialize search functionality
 });
+
+// SEARCH FUNCTIONALITY
+/**
+ * Handle search input and redirect to product list page with search query
+ */
+function handleSearch() {
+  const searchInput = $("#search-input");
+  const searchQuery = searchInput.val().trim(); // Get trimmed search query
+
+  // Only proceed if search query is not empty
+  if (searchQuery) {
+    // Redirect to ListProduct page with search query parameter
+    window.location.href = `ListProduct.html?search=${encodeURIComponent(
+      searchQuery
+    )}`;
+  }
+}
+
+/**
+ * Set up search bar event listeners
+ */
+function initializeSearch() {
+  const searchInput = $("#search-input");
+
+  // Handle Enter key press in search input
+  searchInput.on("keypress", function (e) {
+    // Check if Enter key (key code 13) is pressed
+    if (e.which === 13) {
+      // Enter key
+      e.preventDefault();
+      handleSearch();
+    }
+  });
+}
 
 // Load order data from localStorage
 function loadOrderData() {

@@ -7,6 +7,7 @@ $(document).ready(function () {
   calculateTotals();
   initializeValidation();
   updateCartCount();
+  initializeSearch(); // Initialize search functionality
 
   // Shipping method change handler
   $("#shipping-method").on("change", function () {
@@ -21,6 +22,40 @@ $(document).ready(function () {
     }
   });
 });
+
+// SEARCH FUNCTIONALITY
+/**
+ * Handle search input and redirect to product list page with search query
+ */
+function handleSearch() {
+  const searchInput = $("#search-input");
+  const searchQuery = searchInput.val().trim(); // Get trimmed search query
+
+  // Only proceed if search query is not empty
+  if (searchQuery) {
+    // Redirect to ListProduct page with search query parameter
+    window.location.href = `ListProduct.html?search=${encodeURIComponent(
+      searchQuery
+    )}`;
+  }
+}
+
+/**
+ * Set up search bar event listeners
+ */
+function initializeSearch() {
+  const searchInput = $("#search-input");
+
+  // Handle Enter key press in search input
+  searchInput.on("keypress", function (e) {
+    // Check if Enter key (key code 13) is pressed
+    if (e.which === 13) {
+      // Enter key
+      e.preventDefault();
+      handleSearch();
+    }
+  });
+}
 
 // Load cart from localStorage
 function loadCart() {
@@ -235,11 +270,11 @@ function validateForm() {
   const isAddressValid = validateAddress();
   const isCityValid = validateCity();
 
-  const shippingMethod = $("#shipping-method").val();
-  if (!shippingMethod) {
-    alert("Please select a shipping method");
-    return false;
-  }
+  // const shippingMethod = $("#shipping-method").val();
+  // if (!shippingMethod) {
+  //   alert("Please select a shipping method");
+  //   return false;
+  // }
 
   return isEmailValid && isPhoneValid && isAddressValid && isCityValid;
 }

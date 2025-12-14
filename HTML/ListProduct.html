@@ -47,7 +47,7 @@
 
       <nav class="main-nav">
         <a href="HomePage.html">Home</a>
-        <a href="ListProduct.html">All Products</a>
+        <a href="ListProduct.html">Shop/Products</a>
         <a href="AboutPage.html">About Us</a>
       </nav>
     </header>
@@ -97,40 +97,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Size Filter (collapsed by default) -->
-        <div class="filter-group">
-          <div class="filter-header collapsed">
-            <span>Size</span>
-            <i class="fas fa-chevron-up"></i>
-          </div>
-          <div class="filter-options" style="display: none">
-            <div class="filter-option">
-              <label>
-                <input type="checkbox" value="S" />
-                <span>Small</span>
-              </label>
-            </div>
-            <div class="filter-option">
-              <label>
-                <input type="checkbox" value="M" />
-                <span>Medium</span>
-              </label>
-            </div>
-            <div class="filter-option">
-              <label>
-                <input type="checkbox" value="L" />
-                <span>Large</span>
-              </label>
-            </div>
-            <div class="filter-option">
-              <label>
-                <input type="checkbox" value="XL" />
-                <span>X-Large</span>
-              </label>
-            </div>
-          </div>
-        </div>
       </aside>
 
       <!-- Products Section -->
@@ -144,5 +110,36 @@
         <div class="pagination" id="pagination" style="display: none"></div>
       </main>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer-content">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h4>Categories</h4>
+          <div id="footer-categories">
+            <!-- Categories will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Email: info@lumina.com</p>
+          <p>Phone: (555) 123-4567</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Newsletter</h4>
+          <form>
+            <input type="email" placeholder="Enter your email" />
+            <button type="submit">Subscribe</button>
+          </form>
+
+          <div class="social-icons">
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

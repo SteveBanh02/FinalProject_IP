@@ -5,36 +5,36 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #f8f8f8;
   color: #333;
 }
 
-/* Header Styles */
+/* Header Styles - Updated to match HomePage */
 .site-header {
-  background-color: white;
-  border-bottom: 1px solid #e0e0e0;
+  background: #fff;
+  padding: 20px 15px;
+  border-bottom: 1px solid #eee;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  max-width: 1400px;
-  margin: 0 auto;
-  gap: 20px;
+  padding: 10px 60px;
+  gap: 40px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
 }
 
 .logo {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 32px;
   letter-spacing: 2px;
+  font-weight: bold;
   color: #333;
 }
 
@@ -47,18 +47,10 @@ body {
   display: flex;
   align-items: center;
   flex: 1;
-  max-width: 600px;
+  max-width: 700px;
 }
 
-/* .search-bar {
-  flex: 1;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: border-color 0.2s;
-} */
-
+/* Search Bar - Updated to match HomePage */
 .search-bar {
   flex: 1;
   max-width: 700px;
@@ -73,14 +65,13 @@ body {
   border-color: #333;
 }
 
-/* Header Icons Container */
+/* Header Icons - Updated to match HomePage */
 .header-icons {
   display: flex;
   align-items: flex-end;
-  gap: 20px;
+  gap: 15px;
 }
 
-/* Individual Header Icon Styling */
 .header-icons > div {
   display: flex;
   flex-direction: column;
@@ -89,14 +80,12 @@ body {
   font-size: 12px;
 }
 
-/* Container for account link */
 .account {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Account icon styling */
 .account a {
   display: flex;
   align-items: flex-end;
@@ -109,7 +98,6 @@ body {
   margin-bottom: 4px;
 }
 
-/* Cart icon styling */
 .cart-icon {
   position: relative;
   display: flex;
@@ -131,7 +119,6 @@ body {
   display: block;
 }
 
-/* Cart count badge */
 .cart-count {
   position: absolute;
   top: 0px;
@@ -148,12 +135,12 @@ body {
   font-weight: bold;
 }
 
-/* Ensure both text labels are at the same position */
 .header-icons > div > span:last-child {
   margin-top: 4px;
   display: block;
 }
 
+/* Main Navigation - Updated to match HomePage */
 .main-nav {
   display: flex;
   justify-content: center;
@@ -171,27 +158,12 @@ body {
 }
 
 .main-nav a:hover {
-  color: #666;
+  color: #007bff;
 }
 
+/* Remove secondary-nav as it's not in HomePage */
 .secondary-nav {
-  background-color: #f5f5f5;
-  padding: 12px 40px;
-  text-align: center;
-  border-top: 1px solid #e0e0e0;
-}
-
-.secondary-nav a {
-  text-decoration: none;
-  color: #333;
-  font-size: 13px;
-  font-weight: 500;
-  margin: 0 15px;
-  transition: color 0.2s;
-}
-
-.secondary-nav a:hover {
-  color: #666;
+  display: none;
 }
 
 /* Main Container */
@@ -582,6 +554,96 @@ body {
   font-weight: bold;
 }
 
+/* Footer Styling - Added from HomePage */
+.footer-content {
+  background-color: #f8f8f8;
+  width: 100%;
+  padding: 40px 0;
+  margin-top: 60px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 60px;
+  gap: 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1;
+}
+
+.footer-section h4 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.footer-section a {
+  display: block;
+  margin-bottom: 10px;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #000;
+}
+
+.footer-section p {
+  margin-bottom: 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.footer-section form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.footer-section input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+}
+
+.footer-section button {
+  padding: 10px 20px;
+  border: none;
+  background: #000;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  transition: background 0.3s ease;
+}
+
+.footer-section button:hover {
+  background: #333;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons i {
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.social-icons i:hover {
+  color: #000;
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .products-grid {
@@ -612,6 +674,12 @@ body {
   .header-center {
     margin: 0 20px;
   }
+
+  .footer-container {
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 30px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -624,10 +692,6 @@ body {
     order: 3;
     width: 100%;
     margin: 0;
-  }
-
-  .header-nav {
-    gap: 15px;
   }
 
   .products-grid {
