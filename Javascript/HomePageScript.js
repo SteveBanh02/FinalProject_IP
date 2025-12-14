@@ -1,8 +1,14 @@
+// ========================================
 // CART MANAGEMENT
+// ========================================
+
 // Initialize empty cart array to store products
 let cart = [];
 
+// ========================================
 // CATEGORY STYLES CONFIGURATION
+// ========================================
+
 // Define visual styles (emoji and gradient colors) for each product category
 const categoryStyles = {
   Electronics: {
@@ -47,7 +53,51 @@ const categoryStyles = {
   },
 };
 
+// ========================================
+// SEARCH FUNCTIONALITY
+// ========================================
+
+/**
+ * Handle search input and redirect to product list page with search query
+ */
+function handleSearch() {
+  const searchInput = $("#search-input");
+  const searchQuery = searchInput.val().trim();
+
+  if (searchQuery) {
+    // Redirect to ListProduct page with search query parameter
+    window.location.href = `ListProduct.html?search=${encodeURIComponent(
+      searchQuery
+    )}`;
+  }
+}
+
+/**
+ * Set up search bar event listeners
+ */
+function initializeSearch() {
+  const searchInput = $("#search-input");
+
+  // Handle Enter key press in search input
+  searchInput.on("keypress", function (e) {
+    if (e.which === 13) {
+      // Enter key
+      e.preventDefault();
+      handleSearch();
+    }
+  });
+
+  // Optional: Add search button if you want one
+  // You can add a search icon button next to the input field
+  searchInput.on("input", function () {
+    // You could add autocomplete suggestions here in the future
+  });
+}
+
+// ========================================
 // LOAD CATEGORIES FROM XML FILE
+// ========================================
+
 /**
  * Fetch categories from XML file using jQuery AJAX
  * This function loads the categories.xml file and processes it
@@ -78,7 +128,10 @@ function getCategoriesJQuery() {
   });
 }
 
+// ========================================
 // POPULATE FOOTER WITH CATEGORIES
+// ========================================
+
 /**
  * Add category links to the footer section
  * Shows only the first 5 categories
@@ -106,7 +159,10 @@ function populateFooterCategories(xmlDoc) {
   });
 }
 
+// ========================================
 // NAVIGATION TO PRODUCT LIST PAGE
+// ========================================
+
 /**
  * Navigate to the product list page with selected category
  * @param {string} categoryName - The name of the category to filter by
@@ -118,7 +174,10 @@ function navigateToCategory(categoryName) {
   )}`;
 }
 
+// ========================================
 // DISPLAY CATEGORY CARDS ON HOME PAGE
+// ========================================
+
 /**
  * Create and display category cards on the home page
  * Each card shows an emoji icon and gradient background
@@ -163,7 +222,10 @@ function displayCategoryJQuery(xmlDoc) {
   populateFooterCategories(xmlDoc);
 }
 
+// ========================================
 // LOAD SHOPPING CART FROM BROWSER STORAGE
+// ========================================
+
 /**
  * Load shopping cart data from localStorage
  * This runs when the page loads to restore the user's cart
@@ -185,7 +247,10 @@ function loadCart() {
   }
 }
 
+// ========================================
 // UPDATE CART COUNT BADGE
+// ========================================
+
 /**
  * Update the cart count badge in the header
  * Shows total number of items in cart
@@ -201,12 +266,16 @@ function updateCartCount() {
   }
 }
 
+// ========================================
 // INITIALIZE PAGE WHEN DOM IS READY
+// ========================================
+
 /**
  * Run when the page has finished loading
- * Initializes categories and cart
+ * Initializes categories, cart, and search functionality
  */
 $(document).ready(function () {
   getCategoriesJQuery(); // Load and display categories
   loadCart(); // Load cart from localStorage
+  initializeSearch(); // Initialize search functionality
 });

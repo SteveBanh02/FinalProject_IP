@@ -6,6 +6,7 @@ let currentPage = 1; // Current page number for pagination
 const productsPerPage = 30; // Number of products to show per page
 let currentSort = "default"; // Current sorting method
 let cart = []; // Shopping cart array
+let currentSearchQuery = ""; // Current search query
 
 // HELPER FUNCTIONS
 /**
@@ -17,6 +18,112 @@ let cart = []; // Shopping cart array
 function getURLParameter(name) {
   const params = new URLSearchParams(window.location.search);
   return params.get(name);
+}
+
+// SEARCH FUNCTIONALITY
+/**
+ * Search products by name or description
+ * @param {Array} products - Array of products to search through
+ * @param {string} query - Search query string
+ * @returns {Array} Filtered array of products matching the search
+ */
+function searchProducts(products, query) {
+  if (!query || query.trim() === "") {
+    return products;
+  }
+
+  const searchTerm = query.toLowerCase().trim();
+
+  return products.filter((product) => {
+    // Search in product name
+    const nameMatch = product.name.toLowerCase().includes(searchTerm);
+
+    // Search in product category
+    const categoryMatch =
+      product.category && product.category.toLowerCase().includes(searchTerm);
+
+    // Search in product description if available
+    const descriptionMatch =
+      product.description &&
+      product.description.toLowerCase().includes(searchTerm);
+
+    // Return true if any field matches
+    return nameMatch || categoryMatch || descriptionMatch;
+  });
+}
+
+/**
+ * Handle search input from the search bar
+ */
+function handleSearch() {
+  // Try both possible selectors for the search input
+  const searchInput = $(".search-bar");
+
+  // Check if search input exists
+  if (searchInput.length === 0) {
+    console.log("Search input not found");
+    return;
+  }
+
+  const searchQuery = searchInput.val().trim();
+
+  console.log("Search query:", searchQuery);
+
+  currentSearchQuery = searchQuery;
+
+  // Apply search filter along with other filters
+  applyFilters();
+}
+
+/**
+ * Initialize search bar functionality
+ */
+function initializeSearch() {
+  // Wait a bit to make sure the DOM is fully loaded
+  setTimeout(() => {
+    // Use class selector since the HTML uses class="search-bar"
+    const searchInput = $(".search-bar");
+
+    if (searchInput.length === 0) {
+      console.warn("Search input element not found in DOM");
+      return;
+    }
+
+    console.log("Search input found, initializing...");
+
+    // Get search query from URL if present
+    const urlSearchQuery = getURLParameter("search");
+    if (urlSearchQuery) {
+      searchInput.val(urlSearchQuery);
+      currentSearchQuery = urlSearchQuery;
+      console.log("Loaded search from URL:", urlSearchQuery);
+    }
+
+    // Remove any existing handlers first
+    searchInput.off("keypress keyup input");
+
+    // Handle Enter key press in search input
+    searchInput.on("keypress", function (e) {
+      if (e.which === 13) {
+        // Enter key
+        e.preventDefault();
+        console.log("Enter key pressed");
+        handleSearch();
+      }
+    });
+
+    // Real-time search as user types (with debounce)
+    let searchTimeout;
+    searchInput.on("input", function () {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        console.log("Search input changed");
+        handleSearch();
+      }, 500); // Wait 500ms after user stops typing
+    });
+
+    console.log("Search functionality initialized successfully");
+  }, 100);
 }
 
 // LOAD CATEGORIES FROM XML
@@ -120,24 +227,33 @@ async function loadAllCategories() {
 // LOAD AND FILTER PRODUCTS
 /**
  * Main function to load products and apply initial filters
- * Checks URL for category parameter and filters if present
+ * Checks URL for category and search parameters
  */
 async function loadAllProducts() {
   try {
     // Check if a specific category was requested in URL
     const categoryParam = getURLParameter("category");
+    const searchParam = getURLParameter("search");
+
+    console.log("URL parameters:", { categoryParam, searchParam });
 
     // Always load all products (needed for accurate filter counts)
     allProducts = await loadAllCategories();
 
-    // If a category was selected, show only products from that category
+    // Start with all products
+    filteredProducts = [...allProducts];
+
+    // If a category was selected, filter by category
     if (categoryParam) {
-      filteredProducts = allProducts.filter(
+      filteredProducts = filteredProducts.filter(
         (p) => p.category === categoryParam
       );
-    } else {
-      // Otherwise, show all products
-      filteredProducts = [...allProducts];
+    }
+
+    // If a search query exists, apply search filter
+    if (searchParam) {
+      currentSearchQuery = searchParam;
+      filteredProducts = searchProducts(filteredProducts, searchParam);
     }
 
     // Display category filters in sidebar
@@ -146,6 +262,8 @@ async function loadAllProducts() {
     applySorting();
     // Show products on page
     updateDisplay();
+    // Initialize search functionality AFTER everything is loaded
+    initializeSearch();
   } catch (error) {
     console.error("Error loading products:", error);
     // Show error message to user
@@ -230,10 +348,12 @@ function applySorting() {
 
 // APPLY FILTERS
 /**
- * Filter products based on selected categories and price range
+ * Filter products based on selected categories, price range, and search query
  * Then update the display with filtered results
  */
 function applyFilters() {
+  console.log("Applying filters with search query:", currentSearchQuery);
+
   // Get all checked category checkboxes
   const selectedCategories = $(".category-filter:checked")
     .map(function () {
@@ -245,21 +365,30 @@ function applyFilters() {
   const minPrice = parseFloat($("#min-price").val()) || 0;
   const maxPrice = parseFloat($("#max-price").val()) || 10000;
 
-  // Filter products based on category and price
-  filteredProducts = allProducts.filter((product) => {
+  // Start with all products
+  let tempFiltered = [...allProducts];
+
+  // Apply category filter
+  if (selectedCategories.length > 0) {
+    tempFiltered = tempFiltered.filter((product) =>
+      selectedCategories.includes(product.category)
+    );
+  }
+
+  // Apply price filter
+  tempFiltered = tempFiltered.filter((product) => {
     const price = parseFloat(product.price);
-
-    // Check if product matches selected categories
-    const categoryMatch =
-      selectedCategories.length === 0 ||
-      selectedCategories.includes(product.category);
-
-    // Check if product price is within range
-    const priceMatch = price >= minPrice && price <= maxPrice;
-
-    // Product must match both category and price filters
-    return categoryMatch && priceMatch;
+    return price >= minPrice && price <= maxPrice;
   });
+
+  // Apply search filter
+  if (currentSearchQuery) {
+    tempFiltered = searchProducts(tempFiltered, currentSearchQuery);
+  }
+
+  filteredProducts = tempFiltered;
+
+  console.log("Filtered products count:", filteredProducts.length);
 
   // Apply sorting to filtered results
   applySorting();
@@ -297,6 +426,11 @@ function updateResultsCount() {
   const count = filteredProducts.length;
   let countText = `Showing ${count} product${count !== 1 ? "s" : ""}`;
 
+  // Add search query info if searching
+  if (currentSearchQuery) {
+    countText += ` for "${currentSearchQuery}"`;
+  }
+
   // Create results header if it doesn't exist
   if ($("#results-count").length === 0) {
     $(".products-section").prepend(`
@@ -330,11 +464,16 @@ function renderProducts(products) {
 
   // Show message if no products found
   if (products.length === 0) {
+    let message = "<h3>No products found</h3>";
+    if (currentSearchQuery) {
+      message = `<h3>No products found for "${currentSearchQuery}"</h3>`;
+    }
+
     container.html(`
       <div class="no-products">
         <i class="fas fa-box-open"></i>
-        <h3>No products found</h3>
-        <p>Try adjusting your filters</p>
+        ${message}
+        <p>Try adjusting your filters or search query</p>
       </div>
     `);
     return;
@@ -345,9 +484,6 @@ function renderProducts(products) {
   container.addClass("products-grid");
 
   // Create a card for each product and add to container
-  // Each card has click handler to go to product detail page
-  // with product ID and category in URL
-  // Example: ProductDetail.html?id=123&category=Electronics
   products.forEach((product) => {
     const card = $(`
       <div class="product-card" data-product-id="${
@@ -522,6 +658,8 @@ function updateCartCount() {
  * Set up all event listeners when page loads
  */
 $(document).ready(function () {
+  console.log("Document ready");
+
   // Load products on page load
   loadAllProducts();
   // Load cart from localStorage

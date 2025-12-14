@@ -40,6 +40,41 @@ function getCategoryFilename(categoryName) {
   return categoryMap[categoryName] || "Clothing.json";
 }
 
+// SEARCH FUNCTIONALITY
+/**
+ * Handle search input from the search bar
+ */
+function handleSearch() {
+  const searchInput = $("#search-input");
+  const searchQuery = searchInput.val().trim();
+
+  if (searchQuery) {
+    // Redirect to ListProduct page with search query parameter
+    window.location.href = `ListProduct.html?search=${encodeURIComponent(
+      searchQuery
+    )}`;
+  }
+}
+
+/**
+ * Initialize search bar functionality
+ */
+function initializeSearch() {
+  const searchInput = $("#search-input");
+
+  // Handle Enter key press in search input
+  searchInput.on("keypress", function (e) {
+    if (e.which === 13) {
+      // Enter key
+      e.preventDefault();
+      handleSearch();
+    }
+  });
+
+  // Optional: You can add a search button if needed
+  // For now, just using Enter key functionality
+}
+
 // PAGE INITIALIZATION
 /**
  * Initialize the page when DOM is ready
@@ -48,6 +83,7 @@ function getCategoryFilename(categoryName) {
 $(document).ready(function () {
   loadProductFromJSON(); // Load and display product
   initializeEventHandlers(); // Set up button clicks, etc.
+  initializeSearch(); // Initialize search functionality
   loadCart(); // Load cart from localStorage
 });
 
@@ -370,7 +406,6 @@ async function loadReviews(productId) {
         .toUpperCase(); // Convert to uppercase
 
       // Create review item HTML
-      // Note: Using 'title' and 'comment' fields from JSON instead of 'date' and 'text'
       const reviewItem = $(`
         <div class="review-item">
           <div class="review-header">
