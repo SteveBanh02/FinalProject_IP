@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmed - LUMINA</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../CSS/OrderConfirmationStyle.css" />
+    <script src="../Javascript/OrderConfirmationScript.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-container">
+        <h1 class="logo">
+          <a href="HomePage.html">LUMINA</a>
+        </h1>
+
+        <div class="header-center">
+          <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input
+              class="search-bar"
+              type="text"
+              placeholder="Search products..."
+            />
+          </div>
+        </div>
+
+        <div class="header-icons">
+          <div class="account">
+            <a href="LoginPage.html">
+              <img src="../profile.png" alt="Account" />
+            </a>
+            <span>Sign In</span>
+          </div>
+
+          <div class="cart-icon">
+            <a href="ShopCartPage.html">
+              <img src="../shopping_cart.png" alt="Cart" />
+            </a>
+            <span class="cart-count">0</span>
+            <span>My Cart</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="HomePage.html">Home</a>
+        <a href="ListProduct.html">All Products</a>
+        <a href="AboutPage.html">About Us</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Checkout Progress Steps -->
+    <div class="progress-container">
+      <div class="progress-steps">
+        <div class="progress-step completed">
+          <div class="step-number">1</div>
+          <span class="step-label">Shipping</span>
+        </div>
+        <div class="progress-line completed"></div>
+        <div class="progress-step completed">
+          <div class="step-number">2</div>
+          <span class="step-label">Payment</span>
+        </div>
+        <div class="progress-line completed"></div>
+        <div class="progress-step completed">
+          <div class="step-number">
+            <i class="fas fa-check"></i>
+          </div>
+          <span class="step-label">Review</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="confirmation-container">
+      <!-- Left Side - Order Confirmation -->
+      <div class="confirmation-details">
+        <!-- Success Message -->
+        <div class="success-header">
+          <div class="success-icon">
+            <i class="fas fa-check"></i>
+          </div>
+          <h1 class="confirmation-title">Order Confirmed.</h1>
+          <p class="confirmation-message">
+            Your order
+            <span class="order-number" id="order-number">#LUMINA12345</span> has
+            been placed and will be processed shortly
+          </p>
+        </div>
+
+        <!-- Order Details -->
+        <div class="order-details-section">
+          <h2 class="section-title">Order Details</h2>
+
+          <div class="details-card">
+            <!-- Shipping Information -->
+            <div class="info-section">
+              <div class="info-row">
+                <div class="info-group">
+                  <label>Shipping Address</label>
+                  <p id="shipping-email">-</p>
+                </div>
+                <div class="info-group">
+                  <label>Phone</label>
+                  <p id="shipping-phone">-</p>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-group">
+                  <label>Shipping address</label>
+                  <p id="shipping-address">-</p>
+                </div>
+                <div class="info-group">
+                  <label>City, ZIP</label>
+                  <p id="shipping-city">-</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="info-section">
+              <label>Payment Method</label>
+              <div class="payment-method-display">
+                <select disabled id="payment-method">
+                  <option>Credit Card</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <a href="HomePage.html" class="btn-primary">Continue Shopping</a>
+          <button class="btn-secondary" onclick="window.print()">
+            View Order History
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Side - Order Summary -->
+      <div class="order-summary">
+        <h2 class="section-title">Order Summary</h2>
+
+        <!-- Cart Items -->
+        <div class="cart-items" id="cart-items">
+          <!-- Will be populated by JavaScript -->
+        </div>
+
+        <!-- Pricing Details -->
+        <div class="pricing-details">
+          <div class="price-row">
+            <span>Subtotal</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+          <div class="price-row shipping-option">
+            <span id="shipping-method-name">Standard Shipping</span>
+            <span id="shipping-cost">$5.00</span>
+          </div>
+          <div class="price-row">
+            <span>Shipping</span>
+            <span id="shipping-display">$5.00</span>
+          </div>
+          <div class="price-row subtotal-row">
+            <span>Subtotal</span>
+            <span id="subtotal-display">$0.00</span>
+          </div>
+          <div class="price-row total-row">
+            <span>Total</span>
+            <span id="total">$0.00</span>
+          </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="payment-methods">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png"
+            alt="Visa"
+          />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg"
+            alt="Mastercard"
+          />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg"
+            alt="Amex"
+          />
+        </div>
+        <p class="secure-checkout">Secure checkout</p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-content">
+      <div class="container footer-container">
+        <div class="footer-section">
+          <h4>LUMINA</h4>
+          <p>Your trusted online shopping destination</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Email: info@lumina.com</p>
+          <p>Phone: (555) 123-4567</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

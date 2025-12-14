@@ -1,15 +1,9 @@
-// ========================================
 // GLOBAL VARIABLES
-// ========================================
-
 let currentProduct = null; // Stores the currently displayed product
 let allProducts = []; // Stores all products from the category (for related products)
 let cart = []; // Shopping cart array
 
-// ========================================
 // HELPER FUNCTIONS
-// ========================================
-
 /**
  * Get URL parameter by name
  * Example: If URL is "ProductDetail.html?id=1&category=Electronics"
@@ -22,10 +16,7 @@ function getURLParameter(name) {
   return params.get(name);
 }
 
-// ========================================
 // CATEGORY TO FILENAME MAPPING
-// ========================================
-
 /**
  * Convert category name to corresponding JSON filename
  * Example: "Electronics" → "Electronics.json"
@@ -48,45 +39,6 @@ function getCategoryFilename(categoryName) {
 
   return categoryMap[categoryName] || "Clothing.json";
 }
-
-// ========================================
-// MOCK REVIEWS DATA (TEMPORARY)
-// ========================================
-
-/**
- * Mock reviews data - used as fallback if reviews.json doesn't load
- * In production, this would be replaced by actual data from reviews.json
- */
-// const mockReviews = [
-//   {
-//     id: 1,
-//     author: "John Doe",
-//     rating: 5,
-//     date: "2024-11-15",
-//     text: "Absolutely amazing product! The quality is incredible and exceeded my expectations. Worth every penny.",
-//   },
-//   {
-//     id: 2,
-//     author: "Sarah Smith",
-//     rating: 4,
-//     date: "2024-11-10",
-//     text: "Great product overall. Very satisfied with the purchase. Would definitely recommend to others.",
-//   },
-//   {
-//     id: 3,
-//     author: "Mike Johnson",
-//     rating: 5,
-//     date: "2024-11-05",
-//     text: "Best purchase I've made this year. Excellent quality and fast shipping. Highly recommend!",
-//   },
-//   {
-//     id: 4,
-//     author: "Emily Chen",
-//     rating: 4,
-//     date: "2024-10-28",
-//     text: "Very impressed with the quality and features. Great value for money.",
-//   },
-// ];
 
 // PAGE INITIALIZATION
 /**

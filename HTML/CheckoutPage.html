@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - LUMINA</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../CSS/CheckoutPageStyle.css" />
+    <script src="../Javascript/CheckoutPageScript.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-container">
+        <h1 class="logo">
+          <a href="HomePage.html">LUMINA</a>
+        </h1>
+
+        <div class="header-center">
+          <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input
+              class="search-bar"
+              type="text"
+              placeholder="Search products..."
+            />
+          </div>
+        </div>
+
+        <div class="header-icons">
+          <div class="account">
+            <a href="LoginPage.html">
+              <img src="../profile.png" alt="Account" />
+            </a>
+            <span>Sign In</span>
+          </div>
+
+          <div class="cart-icon">
+            <a href="ShopCartPage.html">
+              <img src="../shopping_cart.png" alt="Cart" />
+            </a>
+            <span class="cart-count">0</span>
+            <span>My Cart</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="HomePage.html">Home</a>
+        <a href="ListProduct.html">All Products</a>
+        <a href="AboutPage.html">About Us</a>
+      </nav>
+    </header>
+
+    <!-- Checkout Progress Steps -->
+    <div class="progress-container">
+      <div class="progress-steps">
+        <div class="progress-step completed">
+          <div class="step-number">1</div>
+          <span class="step-label">Shipping</span>
+        </div>
+        <div class="progress-line completed"></div>
+        <div class="progress-step active">
+          <div class="step-number">2</div>
+          <span class="step-label">Payment</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step">
+          <div class="step-number">3</div>
+          <span class="step-label">Review</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Checkout Content -->
+    <main class="checkout-container">
+      <!-- Left Side - Checkout Form -->
+      <div class="checkout-details">
+        <h2 class="section-title">Checkout Details</h2>
+
+        <!-- Product Preview -->
+        <div class="product-preview" id="product-preview">
+          <!-- Will be populated by JavaScript -->
+        </div>
+
+        <!-- Shipping Address Form -->
+        <form id="checkout-form">
+          <h3 class="form-section-title">Shipping address</h3>
+
+          <!-- Contact Information -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Contact information (Email)</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
+              />
+              <span class="error-message" id="email-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Address"
+                required
+              />
+              <span class="error-message" id="phone-error"></span>
+            </div>
+          </div>
+
+          <!-- Shipping Address -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="address">Shipping address</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="Fitty"
+                required
+              />
+              <span class="error-message" id="address-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="city">City, ZIP</label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="Country"
+                required
+              />
+              <span class="error-message" id="city-error"></span>
+            </div>
+          </div>
+
+          <!-- Shipping Method -->
+          <div class="form-group">
+            <label for="shipping-method">Shipping Method</label>
+            <select id="shipping-method" name="shipping-method" required>
+              <option value="">Message</option>
+              <option value="standard" selected>
+                Standard Shipping - $5.00
+              </option>
+              <option value="express">Express Shipping - $15.00</option>
+              <option value="overnight">Overnight Shipping - $25.00</option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right Side - Order Summary -->
+      <div class="order-summary">
+        <h2 class="section-title">Order Summary</h2>
+
+        <!-- Cart Items -->
+        <div class="cart-items" id="cart-items">
+          <!-- Will be populated by JavaScript -->
+        </div>
+
+        <!-- Pricing Details -->
+        <div class="pricing-details">
+          <div class="price-row">
+            <span>Size</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+          <div class="price-row shipping-option">
+            <span>Standard Shipping</span>
+            <span id="shipping-cost">$5.00</span>
+          </div>
+          <div class="price-row">
+            <span>Shipping</span>
+            <span id="shipping-display">$5.00</span>
+          </div>
+          <div class="price-row subtotal-row">
+            <span>Subtotal</span>
+            <span id="subtotal-display">$0.00</span>
+          </div>
+          <div class="price-row total-row">
+            <span>Total</span>
+            <span id="total">Total</span>
+          </div>
+        </div>
+
+        <!-- Place Order Button -->
+        <button type="button" class="place-order-btn" id="place-order-btn">
+          Continue to Payment
+        </button>
+
+        <!-- Payment Methods -->
+        <div class="payment-methods">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png"
+            alt="Visa"
+          />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg"
+            alt="Mastercard"
+          />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg"
+            alt="Amex"
+          />
+        </div>
+        <p class="secure-checkout">Secure checkout</p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-content">
+      <div class="container footer-container">
+        <div class="footer-section">
+          <h4>LUMINA</h4>
+          <p>Your trusted online shopping destination</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Email: info@lumina.com</p>
+          <p>Phone: (555) 123-4567</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

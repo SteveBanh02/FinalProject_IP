@@ -3,7 +3,7 @@ let allProducts = []; // Stores all products from all categories
 let filteredProducts = []; // Stores products after applying filters
 let allCategories = []; // Stores list of all categories
 let currentPage = 1; // Current page number for pagination
-const productsPerPage = 9; // Number of products to show per page
+const productsPerPage = 30; // Number of products to show per page
 let currentSort = "default"; // Current sorting method
 let cart = []; // Shopping cart array
 
