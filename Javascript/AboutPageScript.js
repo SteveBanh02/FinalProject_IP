@@ -1,25 +1,13 @@
-// ========================================
 // CART MANAGEMENT
-// ========================================
-
 // Initialize empty cart array to store products
 let cart = [];
 
-// ========================================
 // SEARCH FUNCTIONALITY
-// ========================================
-
 /**
  * Handle search input from the search bar
  */
 function handleSearch() {
   const searchInput = $(".search-bar");
-
-  // Check if search input exists
-  if (searchInput.length === 0) {
-    console.log("Search input not found");
-    return;
-  }
 
   const searchQuery = searchInput.val().trim();
 
@@ -36,36 +24,17 @@ function handleSearch() {
  */
 function initializeSearch() {
   const searchInput = $(".search-bar");
-
-  if (searchInput.length === 0) {
-    console.warn("Search input element not found in DOM");
-    return;
-  }
-
-  console.log("Search input found, initializing...");
-
   // Handle Enter key press in search input
   searchInput.on("keypress", function (e) {
     if (e.which === 13) {
       // Enter key
       e.preventDefault();
-      console.log("Enter key pressed");
       handleSearch();
     }
   });
-
-  // Optional: Handle click on search icon
-  $(".search-icon").on("click", function () {
-    handleSearch();
-  });
-
-  console.log("Search functionality initialized successfully");
 }
 
-// ========================================
 // LOAD SHOPPING CART FROM BROWSER STORAGE
-// ========================================
-
 /**
  * Load shopping cart data from localStorage
  * This runs when the page loads to restore the user's cart
@@ -73,7 +42,7 @@ function initializeSearch() {
 function loadCart() {
   try {
     // Try to get cart data from localStorage
-    const savedCart = localStorage.getItem("lumina_cart");
+    const savedCart = localStorage.getItem("MyCanadaDeals_cart");
 
     if (savedCart) {
       // Parse JSON string back into array
@@ -87,10 +56,7 @@ function loadCart() {
   }
 }
 
-// ========================================
 // UPDATE CART COUNT BADGE
-// ========================================
-
 /**
  * Update the cart count badge in the header
  * Shows total number of items in cart
@@ -106,10 +72,7 @@ function updateCartCount() {
   }
 }
 
-// ========================================
 // TEAM MEMBER MODAL FUNCTIONALITY
-// ========================================
-
 /**
  * Show detailed information about team members
  * This creates a modal popup with more details
@@ -123,17 +86,11 @@ function showTeamMemberDetails(memberName) {
       bio: "lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       email: "steve.banh@MyCanadaDeals.com",
     },
-    "Luca Rag": {
-      name: "Luca Rag",
+    "Luca Ragosta": {
+      name: "Luca Ragosta",
       position: "Designer",
       bio: "lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      email: "luca.rag@MyCanadaDeals.com",
-    },
-    "Emily Davis": {
-      name: "Emily Davis",
-      position: "Head of Marketing",
-      bio: "lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      email: "emily.davis@MyCanadaDeals.com",
+      email: "Luca.Ragosta@MyCanadaDeals.com",
     },
   };
 
@@ -160,7 +117,7 @@ function showTeamMemberDetails(memberName) {
   // Add modal to page
   $("body").append(modalHTML);
 
-  // Add CSS for modal if not already added
+  // Add CSS for modal
   if (!$("#team-modal-style").length) {
     $("head").append(`
       <style id="team-modal-style">
@@ -314,6 +271,4 @@ $(document).ready(function () {
       return true;
     }
   });
-
-  console.log("About page initialization complete");
 });

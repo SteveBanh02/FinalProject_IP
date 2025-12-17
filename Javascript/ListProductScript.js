@@ -10,10 +10,7 @@ let currentSearchQuery = ""; // Current search query
 
 // HELPER FUNCTIONS
 /**
- * Get URL parameter by name
- * Example: If URL is "page.html?category=Electronics", this gets "Electronics"
- * @param {string} name - The parameter name to retrieve
- * @returns {string|null} The parameter value or null if not found
+ * Get URL parameter by  category name
  */
 function getURLParameter(name) {
   const params = new URLSearchParams(window.location.search);
@@ -22,10 +19,7 @@ function getURLParameter(name) {
 
 // SEARCH FUNCTIONALITY
 /**
- * Search products by name or description
- * @param {Array} products - Array of products to search through
- * @param {string} query - Search query string
- * @returns {Array} Filtered array of products matching the search
+ * Search products by name or description matching the query
  */
 function searchProducts(products, query) {
   if (!query || query.trim() === "") {
@@ -56,19 +50,9 @@ function searchProducts(products, query) {
  * Handle search input from the search bar
  */
 function handleSearch() {
-  // Try both possible selectors for the search input
   const searchInput = $(".search-bar");
 
-  // Check if search input exists
-  if (searchInput.length === 0) {
-    console.log("Search input not found");
-    return;
-  }
-
   const searchQuery = searchInput.val().trim();
-
-  console.log("Search query:", searchQuery);
-
   currentSearchQuery = searchQuery;
 
   // Apply search filter along with other filters
@@ -89,14 +73,11 @@ function initializeSearch() {
       return;
     }
 
-    console.log("Search input found, initializing...");
-
     // Get search query from URL if present
     const urlSearchQuery = getURLParameter("search");
     if (urlSearchQuery) {
       searchInput.val(urlSearchQuery);
       currentSearchQuery = urlSearchQuery;
-      console.log("Loaded search from URL:", urlSearchQuery);
     }
 
     // Remove any existing handlers first
@@ -121,8 +102,6 @@ function initializeSearch() {
         handleSearch();
       }, 500); // Wait 500ms after user stops typing
     });
-
-    console.log("Search functionality initialized successfully");
   }, 100);
 }
 
@@ -130,7 +109,6 @@ function initializeSearch() {
 /**
  * Load all category names from the XML file
  * Returns a Promise so we can wait for the data to load
- * @returns {Promise<Array>} Promise that resolves to array of category names
  */
 async function getCategoriesFromXML() {
   return new Promise((resolve, reject) => {
@@ -160,9 +138,6 @@ async function getCategoriesFromXML() {
 // CATEGORY TO FILENAME MAPPING
 /**
  * Convert category name to corresponding JSON filename
- * Example: "Electronics" → "Electronics.json"
- * @param {string} categoryName - Name of the category
- * @returns {string|null} JSON filename or null if not found
  */
 function getCategoryFilename(categoryName) {
   if (!categoryName) return null;
@@ -188,7 +163,6 @@ function getCategoryFilename(categoryName) {
 /**
  * Load products from all category JSON files
  * Combines all products into a single array
- * @returns {Promise<Array>} Promise that resolves to array of all products
  */
 async function loadAllCategories() {
   // First, get list of all categories from XML
@@ -281,7 +255,6 @@ async function loadAllProducts() {
 /**
  * Create checkbox filters for each category in the sidebar
  * Shows product count for each category
- * @param {string|null} selectedCategory - Category to pre-select, if any
  */
 async function renderCategoryFilters(selectedCategory) {
   const container = $("#category-filters");
@@ -457,7 +430,6 @@ function updateResultsCount() {
 // RENDER PRODUCT CARDS
 /**
  * Display product cards in the grid
- * @param {Array} products - Array of products to display
  */
 function renderProducts(products) {
   const container = $("#products-container");
@@ -629,7 +601,7 @@ function renderPagination() {
  */
 function loadCart() {
   try {
-    const savedCart = localStorage.getItem("lumina_cart");
+    const savedCart = localStorage.getItem("MyCanadaDeals_cart");
     if (savedCart) {
       cart = JSON.parse(savedCart);
       updateCartCount();
@@ -658,8 +630,6 @@ function updateCartCount() {
  * Set up all event listeners when page loads
  */
 $(document).ready(function () {
-  console.log("Document ready");
-
   // Load products on page load
   loadAllProducts();
   // Load cart from localStorage
@@ -686,8 +656,8 @@ $(document).ready(function () {
   });
 
   // Toggle filter sections open/closed
-  $(".filter-header").on("click", function () {
-    $(this).toggleClass("collapsed");
-    $(this).next(".filter-options").slideToggle(200);
-  });
+  // $(".filter-header").on("click", function () {
+  //   $(this).toggleClass("collapsed");
+  //   $(this).next(".filter-options").slideToggle(200);
+  // });
 });

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shopping Cart - LUMINA</title>
+    <title>Shopping Cart - My Canada Deals</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../CSS/ShopCartPageStyle.css" />
     <script src="../Javascript/globalAuth.js"></script>
@@ -14,7 +14,7 @@
     <header class="site-header">
       <div class="header-container">
         <h1 class="logo">
-          <a href="HomePage.html">LUMINA</a>
+          <a href="HomePage.html">My Canada Deals</a>
         </h1>
 
         <div class="header-center">
@@ -24,6 +24,7 @@
               class="search-bar"
               type="text"
               placeholder="Search products..."
+              id="search-input"
             />
           </div>
         </div>
@@ -62,20 +63,7 @@
         <div class="cart-items-section">
           <h2 class="section-title">Your Items</h2>
 
-          <div class="cart-items-list" id="cart-items-list">
-            <!-- Items will be populated by JavaScript -->
-          </div>
-
-          <!-- Discount Code -->
-          <div class="discount-section">
-            <input
-              type="text"
-              class="discount-input"
-              placeholder="Discount Code"
-              id="discount-code"
-            />
-            <button class="apply-btn" id="apply-discount">Apply</button>
-          </div>
+          <div class="cart-items-list" id="cart-items-list"></div>
 
           <!-- Continue Shopping Button -->
           <a href="ListProduct.html" class="continue-shopping-btn">
@@ -87,9 +75,7 @@
         <div class="order-summary">
           <h2 class="section-title">Order Summary</h2>
 
-          <div class="summary-items" id="summary-items">
-            <!-- Summary items will be populated by JavaScript -->
-          </div>
+          <div class="summary-items" id="summary-items"></div>
 
           <!-- Pricing Details -->
           <div class="pricing-details">
@@ -97,13 +83,9 @@
               <span>Subtotal</span>
               <span id="subtotal">$0.00</span>
             </div>
-            <div class="price-row shipping-row">
-              <span>Standard Shipping</span>
-              <span id="shipping">$5.00</span>
-            </div>
             <div class="price-row">
               <span>Shipping</span>
-              <span id="shipping-cost">$5.00</span>
+              <span id="shipping-cost">FREE</span>
             </div>
             <div class="price-row subtotal-display">
               <span>Subtotal</span>
@@ -139,7 +121,6 @@
         </div>
       </div>
 
-      <!-- Free Shipping Banner -->
       <div class="free-shipping-banner">
         <span>FREE SHIPPING ON ALL ORDERS</span>
       </div>
@@ -149,13 +130,13 @@
     <footer class="footer-content">
       <div class="container footer-container">
         <div class="footer-section">
-          <h4>LUMINA</h4>
+          <h4>My Canada Deals</h4>
           <p>Your trusted online shopping destination</p>
         </div>
 
         <div class="footer-section">
           <h4>Contact</h4>
-          <p>Email: info@lumina.com</p>
+          <p>Email: info@MyCanadaDeals.com</p>
           <p>Phone: (555) 123-4567</p>
         </div>
 

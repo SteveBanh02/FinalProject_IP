@@ -1,4 +1,4 @@
-// FIXED AUTHENTICATION: Only registered users can login
+// only registered users can login
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("login-form");
 
@@ -23,12 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Simulate API call delay
       setTimeout(() => {
-        // ========== REAL AUTHENTICATION CHECK ==========
-
+        // REAL AUTHENTICATION CHECK
         // Get users database from localStorage
         let usersDB = [];
         try {
-          const usersData = localStorage.getItem("lumina_users_db");
+          const usersData = localStorage.getItem("MyCanadaDeals_users_db");
           if (usersData) {
             usersDB = JSON.parse(usersData);
           }
@@ -36,9 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
           console.error("Error loading users database:", error);
           usersDB = [];
         }
-
-        console.log("Attempting login for:", email);
-        console.log("Total registered users:", usersDB.length);
 
         // Check if user exists in database
         const user = usersDB.find((u) => u.email === email);
@@ -48,19 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
           btn.textContent = originalText;
           btn.disabled = false;
           showMessage("Account not found. Please register first.", "error");
-          console.log("❌ Login failed: User not registered");
-
-          // Optional: Show link to registration page
-          setTimeout(() => {
-            const messageEl = document.getElementById("message");
-            if (messageEl) {
-              messageEl.innerHTML =
-                'Account not found. <a href="RegisterPage.html" style="color: white; text-decoration: underline;">Create an account</a>';
-              messageEl.className = "message error";
-              messageEl.style.display = "block";
-            }
-          }, 100);
-
           return;
         }
 
@@ -70,19 +53,15 @@ document.addEventListener("DOMContentLoaded", function () {
           btn.textContent = originalText;
           btn.disabled = false;
           showMessage("Incorrect password. Please try again.", "error");
-          console.log("❌ Login failed: Incorrect password");
           return;
         }
 
-        // ========== LOGIN SUCCESSFUL ==========
-
-        console.log("✅ Login successful for:", user.email);
-
+        // LOGIN SUCCESSFUL - proceed to create session
         // Update last login time in database
         user.lastLogin = new Date().toISOString();
         const userIndex = usersDB.findIndex((u) => u.email === email);
         usersDB[userIndex] = user;
-        localStorage.setItem("lumina_users_db", JSON.stringify(usersDB));
+        localStorage.setItem("MyCanadaDeals_users_db", JSON.stringify(usersDB));
 
         // Create user session
         const userSession = {
@@ -93,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         // Save to localStorage
-        localStorage.setItem("lumina_user", JSON.stringify(userSession));
+        localStorage.setItem("MyCanadaDeals_user", JSON.stringify(userSession));
 
         console.log("User session created:", userSession);
 
@@ -126,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Check if email exists in database
       let usersDB = [];
       try {
-        const usersData = localStorage.getItem("lumina_users_db");
+        const usersData = localStorage.getItem("MyCanadaDeals_users_db");
         if (usersData) {
           usersDB = JSON.parse(usersData);
         }

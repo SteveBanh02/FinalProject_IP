@@ -1,29 +1,59 @@
 let cart = [];
-const shippingCost = 0.0; // Free shipping
+const shippingCost = 0.0;
 
 $(document).ready(function () {
   loadCart();
   displayCart();
   updateCartCount();
   calculateTotals();
+  initializeSearch();
 
-  // Apply discount button
-  $("#apply-discount").on("click", applyDiscount);
-
-  // Checkout button
+  // // Checkout button
   $("#checkout-btn").on("click", proceedToCheckout);
 });
 
-// Load cart from localStorage (persistent storage)
+// SEARCH FUNCTIONALITY
+/**
+ * Handle search input and redirect to product list page with search query
+ */
+function handleSearch() {
+  const searchInput = $("#search-input");
+  const searchQuery = searchInput.val().trim(); // Get trimmed search query
+
+  // Only proceed if search query is not empty
+  if (searchQuery) {
+    // Redirect to ListProduct page with search query parameter
+    window.location.href = `ListProduct.html?search=${encodeURIComponent(
+      searchQuery
+    )}`;
+  }
+}
+
+/**
+ * Set up search bar event listeners
+ */
+function initializeSearch() {
+  const searchInput = $("#search-input");
+
+  // Handle Enter key press in search input
+  searchInput.on("keypress", function (e) {
+    // Check if Enter key (key code 13) is pressed
+    if (e.which === 13) {
+      // Enter key
+      e.preventDefault();
+      handleSearch();
+    }
+  });
+}
+
+// Load cart from localStorage
 // This function ensures cart items persist across page reloads
 function loadCart() {
   try {
-    const savedCart = localStorage.getItem("lumina_cart");
+    const savedCart = localStorage.getItem("MyCanadaDeals_cart");
     if (savedCart) {
       cart = JSON.parse(savedCart);
-      console.log("Cart loaded successfully:", cart.length, "items");
     } else {
-      console.log("No saved cart found, starting with empty cart");
       cart = [];
     }
   } catch (error) {
@@ -32,10 +62,10 @@ function loadCart() {
   }
 }
 
-// Save cart to localStorage (persistent storage)
+// Save cart to localStorage
 function saveCart() {
   try {
-    localStorage.setItem("lumina_cart", JSON.stringify(cart));
+    localStorage.setItem("MyCanadaDeals_cart", JSON.stringify(cart));
     console.log("Cart saved:", cart);
   } catch (error) {
     console.error("Error saving cart:", error);
@@ -45,7 +75,7 @@ function saveCart() {
 // Check if user is logged in
 function isUserLoggedIn() {
   try {
-    const userData = localStorage.getItem("lumina_user");
+    const userData = localStorage.getItem("MyCanadaDeals_user");
     if (userData) {
       const user = JSON.parse(userData);
       // Check if user has required fields (email, name, etc.)
@@ -64,7 +94,7 @@ function updateCartCount() {
   $(".cart-count").text(totalItems);
 }
 
-// Display cart items
+// Display empty cart items
 function displayCart() {
   const cartItemsList = $("#cart-items-list");
   const summaryItems = $("#summary-items");
@@ -193,41 +223,11 @@ function calculateTotals() {
     return sum + parseFloat(item.price) * item.quantity;
   }, 0);
 
-  const total = subtotal + shippingCost; // Will be same as subtotal since shipping is $0.00
+  const total = subtotal + shippingCost;
 
   $("#subtotal").text(`${subtotal.toFixed(2)}`);
   $("#subtotal-display").text(`${subtotal.toFixed(2)}`);
-  $("#shipping").text("FREE");
-  $("#shipping-cost").text("FREE");
   $("#total").text(`${total.toFixed(2)}`);
-}
-
-// Apply discount code (mock functionality)
-function applyDiscount() {
-  const code = $("#discount-code").val().trim().toUpperCase();
-
-  if (!code) {
-    showNotification("Please enter a discount code", "error");
-    return;
-  }
-
-  // Mock discount codes
-  const validCodes = {
-    SAVE10: 10,
-    SAVE20: 20,
-    FREESHIP: "free-shipping",
-  };
-
-  if (validCodes[code]) {
-    if (validCodes[code] === "free-shipping") {
-      showNotification("Free shipping applied!", "success");
-    } else {
-      showNotification(`${validCodes[code]}% discount applied!`, "success");
-    }
-    $("#discount-code").val("");
-  } else {
-    showNotification("Invalid discount code", "error");
-  }
 }
 
 // Proceed to checkout - Only for registered users
@@ -431,7 +431,7 @@ function showNotification(message, type = "success") {
 
   $("body").append(notification);
 
-  // Add CSS if not exists
+  // Add CSS for notification
   if (!$("#notification-style").length) {
     $("head").append(`
       <style id="notification-style">

@@ -24,6 +24,12 @@ body {
   font-weight: bold;
   letter-spacing: 3px;
   text-align: center;
+  color: rgb(81, 81, 218);
+}
+
+.logo a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Main Content */
@@ -130,7 +136,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
 .register-btn:hover {
@@ -144,64 +150,6 @@ body {
 .register-btn:disabled {
   background: #999;
   cursor: not-allowed;
-}
-
-.divider {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 30px 0;
-  color: #999;
-  font-size: 13px;
-}
-
-.divider::before,
-.divider::after {
-  content: "";
-  flex: 1;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.divider span {
-  padding: 0 15px;
-}
-
-.social-login {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-.social-btn {
-  flex: 1;
-  padding: 14px;
-  border: 1px solid #ddd;
-  background: white;
-  border-radius: 2px;
-  cursor: pointer;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: all 0.3s;
-}
-
-.social-btn:hover {
-  background: #f8f8f8;
-  border-color: #ccc;
-}
-
-.social-btn i {
-  font-size: 18px;
-}
-
-.google-btn {
-  color: #4285f4;
-}
-
-.facebook-btn {
-  color: #1877f2;
 }
 
 .login-link {

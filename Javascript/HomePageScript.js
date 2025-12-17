@@ -3,7 +3,7 @@
 let cart = [];
 
 // CATEGORY STYLES CONFIGURATION
-// Define visual styles (emoji and gradient colors) for each product category
+// Define visual styles for each product category
 const categoryStyles = {
   Electronics: {
     emoji: "📱",
@@ -117,7 +117,6 @@ function getCategoriesJQuery() {
 /**
  * Add category links to the footer section
  * Shows only the first 5 categories
- * @param {XMLDocument} xmlDoc - The loaded XML document containing categories
  */
 function populateFooterCategories(xmlDoc) {
   const $footerCategories = $("#footer-categories");
@@ -133,7 +132,7 @@ function populateFooterCategories(xmlDoc) {
       .attr("href", "#")
       .text(categoryName)
       .on("click", function (e) {
-        e.preventDefault(); // Prevent default link behavior
+        e.preventDefault();
         navigateToCategory(categoryName);
       });
 
@@ -144,7 +143,6 @@ function populateFooterCategories(xmlDoc) {
 // NAVIGATION TO PRODUCT LIST PAGE
 /**
  * Navigate to the product list page with selected category
- * @param {string} categoryName - The name of the category to filter by
  */
 function navigateToCategory(categoryName) {
   // Redirect to ListProduct.html with category as URL parameter
@@ -157,7 +155,6 @@ function navigateToCategory(categoryName) {
 /**
  * Create and display category cards on the home page
  * Each card shows an emoji icon and gradient background
- * @param {XMLDocument} xmlDoc - The loaded XML document containing categories
  */
 function displayCategoryJQuery(xmlDoc) {
   const $categoryNav = $(".categories-grid");
@@ -169,10 +166,7 @@ function displayCategoryJQuery(xmlDoc) {
     const categoryName = $category.find("name").text();
 
     // Get style for this category, or use default if not found
-    const style = categoryStyles[categoryName] || {
-      emoji: "📦",
-      gradient: "linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)",
-    };
+    const style = categoryStyles[categoryName];
 
     // Create HTML for category card with gradient background and emoji
     const card = `
@@ -207,7 +201,7 @@ function displayCategoryJQuery(xmlDoc) {
 function loadCart() {
   try {
     // Try to get cart data from localStorage
-    const savedCart = localStorage.getItem("lumina_cart");
+    const savedCart = localStorage.getItem("MyCanadaDeals_cart");
 
     if (savedCart) {
       // Parse JSON string back into array
@@ -244,7 +238,7 @@ function updateCartCount() {
  */
 function checkUserLogin() {
   try {
-    const userDataString = localStorage.getItem("lumina_user");
+    const userDataString = localStorage.getItem("MyCanadaDeals_user");
     if (userDataString) {
       const user = JSON.parse(userDataString);
       // Get user name from the user object
@@ -255,10 +249,6 @@ function checkUserLogin() {
 
       // Update the text to show user name instead of "Sign In"
       $(".account span").text(userName);
-
-      console.log("Updated header for user:", userName); // Debug log
-    } else {
-      console.log("No user logged in"); // Debug log
     }
   } catch (error) {
     console.error("Error checking user login:", error);

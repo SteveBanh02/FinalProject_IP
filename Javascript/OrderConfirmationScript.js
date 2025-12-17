@@ -10,7 +10,7 @@ $(document).ready(function () {
  */
 function handleSearch() {
   const searchInput = $("#search-input");
-  const searchQuery = searchInput.val().trim(); // Get trimmed search query
+  const searchQuery = searchInput.val().trim();
 
   // Only proceed if search query is not empty
   if (searchQuery) {
@@ -41,7 +41,7 @@ function initializeSearch() {
 // Load order data from localStorage
 function loadOrderData() {
   try {
-    const orderData = localStorage.getItem("lumina_order");
+    const orderData = localStorage.getItem("MyCanadaDeals_order");
 
     if (!orderData) {
       // No order found, redirect to home
@@ -72,19 +72,9 @@ function displayOrderConfirmation(order) {
   // Display cart items
   displayCartItems(order.cart);
 
-  // Display pricing with FREE shipping
+  // Display pricing details
   $("#subtotal").text(`$${order.subtotal.toFixed(2)}`);
   $("#subtotal-display").text(`$${order.subtotal.toFixed(2)}`);
-
-  // Display shipping as FREE
-  if (order.shipping === 0 || order.shipping === 0.0) {
-    $("#shipping-cost").text("FREE");
-    $("#shipping-display").text("FREE");
-  } else {
-    // Fallback in case old orders had shipping cost
-    $("#shipping-cost").text(`$${order.shipping.toFixed(2)}`);
-    $("#shipping-display").text(`$${order.shipping.toFixed(2)}`);
-  }
 
   $("#total").text(`$${order.total.toFixed(2)}`);
 
@@ -92,7 +82,7 @@ function displayOrderConfirmation(order) {
   const shippingMethodName = getShippingMethodName(order.shippingMethod);
   $("#shipping-method-name").text(shippingMethodName);
 
-  // Send confirmation email (mock)
+  // Send confirmation email
   sendConfirmationEmail(order, orderNumber);
 }
 
@@ -127,7 +117,7 @@ function displayCartItems(cart) {
 
 // Generate mock order number
 function generateOrderNumber() {
-  const prefix = "LUMINA";
+  const prefix = "MyCanadaDeals";
   const timestamp = Date.now();
   const random = Math.floor(Math.random() * 10000);
   return `#${prefix}${timestamp.toString().slice(-5)}${random
@@ -135,7 +125,7 @@ function generateOrderNumber() {
     .padStart(4, "0")}`;
 }
 
-// Get shipping method display name (all are free now)
+// Get shipping method display name
 function getShippingMethodName(method) {
   const methods = {
     standard: "Standard Shipping (FREE)",
@@ -147,7 +137,7 @@ function getShippingMethodName(method) {
 
 // Mock send confirmation email
 function sendConfirmationEmail(order, orderNumber) {
-  console.log("Confirmation email sent to:", order.email);
+  // console.log("Confirmation email sent to:", order.email);
   console.log("Order Number:", orderNumber);
   console.log("Order Details:", order);
 }
@@ -175,13 +165,7 @@ function showNoOrderMessage() {
   `);
 }
 
-// Update cart count (should be 0 after order)
+// Update cart count to zero
 function updateCartCount() {
   $(".cart-count").text("0");
 }
-
-// Clear order data when leaving page (optional)
-$(window).on("beforeunload", function () {
-  // Optionally clear order data after viewing confirmation
-  // localStorage.removeItem('lumina_order');
-});

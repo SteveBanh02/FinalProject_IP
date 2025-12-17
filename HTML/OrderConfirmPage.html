@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order Confirmed - LUMINA</title>
+    <title>Order Confirmed - My Canada Deals</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../CSS/OrderConfirmationStyle.css" />
     <script src="../Javascript/globalAuth.js"></script>
@@ -14,7 +14,7 @@
     <header class="site-header">
       <div class="header-container">
         <h1 class="logo">
-          <a href="HomePage.html">LUMINA</a>
+          <a href="HomePage.html">My Canada Deals</a>
         </h1>
 
         <div class="header-center">
@@ -89,8 +89,10 @@
           <h1 class="confirmation-title">Order Confirmed.</h1>
           <p class="confirmation-message">
             Your order
-            <span class="order-number" id="order-number">#LUMINA12345</span> has
-            been placed and will be processed shortly
+            <span class="order-number" id="order-number"
+              >#MyCanadaDeals12345</span
+            >
+            has been placed and will be processed shortly
           </p>
         </div>
 
@@ -139,9 +141,6 @@
         <!-- Action Buttons -->
         <div class="action-buttons">
           <a href="HomePage.html" class="btn-primary">Continue Shopping</a>
-          <button class="btn-secondary" onclick="window.print()">
-            View Order History
-          </button>
         </div>
       </div>
 
@@ -150,9 +149,7 @@
         <h2 class="section-title">Order Summary</h2>
 
         <!-- Cart Items -->
-        <div class="cart-items" id="cart-items">
-          <!-- Will be populated by JavaScript -->
-        </div>
+        <div class="cart-items" id="cart-items"></div>
 
         <!-- Pricing Details -->
         <div class="pricing-details">
@@ -160,13 +157,9 @@
             <span>Subtotal</span>
             <span id="subtotal">$0.00</span>
           </div>
-          <div class="price-row shipping-option">
-            <span id="shipping-method-name">Standard Shipping</span>
-            <span id="shipping-cost">$5.00</span>
-          </div>
           <div class="price-row">
             <span>Shipping</span>
-            <span id="shipping-display">$5.00</span>
+            <span id="shipping-display">FREE</span>
           </div>
           <div class="price-row subtotal-row">
             <span>Subtotal</span>
@@ -201,13 +194,13 @@
     <footer class="footer-content">
       <div class="container footer-container">
         <div class="footer-section">
-          <h4>LUMINA</h4>
+          <h4>My Canada Deals</h4>
           <p>Your trusted online shopping destination</p>
         </div>
 
         <div class="footer-section">
           <h4>Contact</h4>
-          <p>Email: info@lumina.com</p>
+          <p>Email: info@MyCanadaDeals.com</p>
           <p>Phone: (555) 123-4567</p>
         </div>
 

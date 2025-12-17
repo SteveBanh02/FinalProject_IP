@@ -1,14 +1,11 @@
-// REAL REGISTRATION SCRIPT WITH USER DATABASE
 // Stores registered users and enables real authentication
-
-document.addEventListener('DOMContentLoaded', function() {
-  
+document.addEventListener("DOMContentLoaded", function () {
   const registerForm = document.getElementById("register-form");
 
   if (registerForm) {
     registerForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      
+
       // Get form values
       const fullname = document.getElementById("fullname").value.trim();
       const email = document.getElementById("email").value.trim().toLowerCase();
@@ -42,13 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Simulate API delay
       setTimeout(() => {
-        
-        // ========== REAL AUTHENTICATION LOGIC ==========
-        
+        // REAL AUTHENTICATION LOGIC FOR REGISTRATION
         // Get existing users database from localStorage
         let usersDB = [];
         try {
-          const usersData = localStorage.getItem("lumina_users_db");
+          const usersData = localStorage.getItem("MyCanadaDeals_users_db");
           if (usersData) {
             usersDB = JSON.parse(usersData);
           }
@@ -58,12 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Check if email already exists
-        const existingUser = usersDB.find(user => user.email === email);
+        const existingUser = usersDB.find((user) => user.email === email);
         if (existingUser) {
           btn.textContent = originalText;
           btn.disabled = false;
-          showMessage("Email already registered! Please login instead.", "error");
-          console.log("Registration failed: Email already exists");
+          showMessage(
+            "Email already registered! Please login instead.",
+            "error"
+          );
           return;
         }
 
@@ -72,9 +69,9 @@ document.addEventListener('DOMContentLoaded', function() {
           id: Date.now(), // Unique ID
           email: email,
           name: fullname,
-          password: password, // ⚠️ In production, this should be hashed!
+          password: password,
           registeredDate: new Date().toISOString(),
-          lastLogin: new Date().toISOString()
+          lastLogin: new Date().toISOString(),
         };
 
         // Add user to database
@@ -82,9 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Save updated database back to localStorage
         try {
-          localStorage.setItem("lumina_users_db", JSON.stringify(usersDB));
-          console.log("✅ New user registered:", { email, name: fullname });
-          console.log("📊 Total users in database:", usersDB.length);
+          localStorage.setItem(
+            "MyCanadaDeals_users_db",
+            JSON.stringify(usersDB)
+          );
         } catch (error) {
           btn.textContent = originalText;
           btn.disabled = false;
@@ -97,11 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const userSession = {
           email: newUser.email,
           name: newUser.name,
-          loginTime: new Date().toISOString()
+          loginTime: new Date().toISOString(),
         };
-        localStorage.setItem("lumina_user", JSON.stringify(userSession));
+        localStorage.setItem("MyCanadaDeals_user", JSON.stringify(userSession));
 
-        // ========== END AUTHENTICATION LOGIC ==========
+        // END AUTHENTICATION LOGIC
 
         btn.textContent = originalText;
         btn.disabled = false;
@@ -112,43 +110,27 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
           window.location.href = "HomePage.html";
         }, 1500);
-        
       }, 1500);
-    });
-  }
-
-  // Social signup handlers
-  const googleSignup = document.getElementById("google-signup");
-  if (googleSignup) {
-    googleSignup.addEventListener("click", function(e) {
-      e.preventDefault();
-      showMessage("Google signup coming soon!", "error");
-    });
-  }
-
-  const facebookSignup = document.getElementById("facebook-signup");
-  if (facebookSignup) {
-    facebookSignup.addEventListener("click", function(e) {
-      e.preventDefault();
-      showMessage("Facebook signup coming soon!", "error");
     });
   }
 
   // Terms link handler
   const termsLink = document.querySelector(".terms-link");
   if (termsLink) {
-    termsLink.addEventListener("click", function(e) {
+    termsLink.addEventListener("click", function (e) {
       e.preventDefault();
-      alert("Terms & Conditions:\n\n1. You must be 18 or older to create an account.\n2. Provide accurate information.\n3. Keep your password secure.\n4. Follow our community guidelines.\n\n(Full terms would be displayed on a dedicated page)");
+      alert(
+        "Terms & Conditions:\n\n1. You must be 18 or older to create an account.\n2. Provide accurate information.\n3. Keep your password secure.\n4. Follow our community guidelines.\n\n(Full terms would be displayed on a dedicated page)"
+      );
     });
   }
 
   // Real-time password matching validation
   const passwordInput = document.getElementById("password");
   const confirmPasswordInput = document.getElementById("confirm-password");
-  
+
   if (confirmPasswordInput && passwordInput) {
-    confirmPasswordInput.addEventListener("input", function() {
+    confirmPasswordInput.addEventListener("input", function () {
       if (passwordInput.value && confirmPasswordInput.value) {
         if (passwordInput.value !== confirmPasswordInput.value) {
           confirmPasswordInput.style.borderColor = "#f44336";

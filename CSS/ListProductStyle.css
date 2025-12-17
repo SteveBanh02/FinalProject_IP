@@ -36,6 +36,7 @@ body {
   letter-spacing: 2px;
   font-weight: bold;
   color: #333;
+  color: rgb(81, 81, 218);
 }
 
 .logo a {
@@ -159,11 +160,6 @@ body {
 
 .main-nav a:hover {
   color: #007bff;
-}
-
-/* Remove secondary-nav as it's not in HomePage */
-.secondary-nav {
-  display: none;
 }
 
 /* Main Container */

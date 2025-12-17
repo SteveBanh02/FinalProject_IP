@@ -1,5 +1,7 @@
 $(document).ready(function () {
-  const user = JSON.parse(localStorage.getItem("lumina_user"));
+  // Update account link based on authentication status
+  // Get current user from localStorage
+  const user = JSON.parse(localStorage.getItem("MyCanadaDeals_user"));
 
   const accountLink = $(".account a");
   const accountText = $(".account span");

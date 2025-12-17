@@ -1,6 +1,4 @@
-/* ========================================
-   RESET AND BASE STYLES
-   ======================================== */
+/* RESET AND BASE STYLES */
 
 * {
   margin: 0;
@@ -20,9 +18,7 @@ a {
   color: inherit;
 }
 
-/* ========================================
-   HEADER STYLES
-   ======================================== */
+/* HEADER STYLES */
 
 .site-header {
   background-color: white;
@@ -49,7 +45,7 @@ a {
   font-size: 32px;
   letter-spacing: 2px;
   font-weight: bold;
-  color: #333;
+  color: rgb(81, 81, 218);
 }
 
 /* Header Center - Search */
@@ -182,9 +178,7 @@ a {
   color: #007bff;
 }
 
-/* ========================================
-   PROGRESS STEPS
-   ======================================== */
+/* PROGRESS STEPS */
 
 .progress-container {
   background-color: white;
@@ -244,9 +238,7 @@ a {
   background-color: #4caf50;
 }
 
-/* ========================================
-   MAIN CONTENT LAYOUT
-   ======================================== */
+/* MAIN CONTENT LAYOUT */
 
 .confirmation-container {
   max-width: 1400px;
@@ -257,9 +249,7 @@ a {
   gap: 40px;
 }
 
-/* ========================================
-   LEFT SIDE - ORDER CONFIRMATION
-   ======================================== */
+/* LEFT SIDE - ORDER CONFIRMATION */
 
 .confirmation-details {
   background-color: white;
@@ -411,9 +401,7 @@ a {
   background-color: #f5f5f5;
 }
 
-/* ========================================
-   RIGHT SIDE - ORDER SUMMARY
-   ======================================== */
+/*RIGHT SIDE - ORDER SUMMARY */
 
 .order-summary {
   background-color: white;
@@ -500,13 +488,6 @@ a {
   color: #666;
 }
 
-.shipping-option {
-  background-color: #f9f9f9;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 15px;
-}
-
 .subtotal-row {
   padding-top: 12px;
   border-top: 1px solid #e0e0e0;
@@ -546,9 +527,7 @@ a {
   margin-top: 10px;
 }
 
-/* ========================================
-   FOOTER
-   ======================================== */
+/*FOOTER */
 
 .footer-content {
   background-color: #f8f8f8;
@@ -610,61 +589,4 @@ a {
 
 .social-icons i:hover {
   color: #000;
-}
-
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
-
-@media (max-width: 1024px) {
-  .confirmation-container {
-    grid-template-columns: 1fr;
-  }
-
-  .order-summary {
-    position: static;
-  }
-}
-
-@media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .header-center {
-    width: 100%;
-  }
-
-  .main-nav {
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .confirmation-details {
-    padding: 30px 20px;
-  }
-
-  .action-buttons {
-    flex-direction: column;
-  }
-
-  .info-row {
-    grid-template-columns: 1fr;
-  }
-
-  .progress-steps {
-    padding: 0 20px;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    padding: 0 20px;
-    gap: 30px;
-  }
-
-  .confirmation-container {
-    padding: 20px;
-  }
 }

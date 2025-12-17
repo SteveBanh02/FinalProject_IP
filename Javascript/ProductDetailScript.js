@@ -8,8 +8,6 @@ let cart = []; // Shopping cart array
  * Get URL parameter by name
  * Example: If URL is "ProductDetail.html?id=1&category=Electronics"
  * getURLParameter("id") returns "1"
- * @param {string} name - The parameter name to retrieve
- * @returns {string|null} The parameter value or null if not found
  */
 function getURLParameter(name) {
   const params = new URLSearchParams(window.location.search);
@@ -19,9 +17,6 @@ function getURLParameter(name) {
 // CATEGORY TO FILENAME MAPPING
 /**
  * Convert category name to corresponding JSON filename
- * Example: "Electronics" → "Electronics.json"
- * @param {string} categoryName - Name of the category
- * @returns {string} JSON filename (defaults to "Clothing.json" if not found)
  */
 function getCategoryFilename(categoryName) {
   const categoryMap = {
@@ -70,9 +65,6 @@ function initializeSearch() {
       handleSearch();
     }
   });
-
-  // Optional: You can add a search button if needed
-  // For now, just using Enter key functionality
 }
 
 // PAGE INITIALIZATION
@@ -90,12 +82,7 @@ $(document).ready(function () {
 // LOAD PRODUCT DATA
 /**
  * Load product data from JSON file based on URL parameters
- * Tries multiple methods to find the product:
- * 1. By ID from URL
- * 2. By array index
- * 3. By product name
- * 4. From sessionStorage as fallback
- */
+ * */
 async function loadProductFromJSON() {
   try {
     // Get product ID and category from URL
@@ -131,46 +118,14 @@ async function loadProductFromJSON() {
 
     // Load the JSON file for this product's category
     const jsonFile = getCategoryFilename(category);
-    console.log("Loading JSON file:", jsonFile);
 
     const response = await $.getJSON(`../jsonFiles/${jsonFile}`);
     allProducts = Array.isArray(response) ? response : response.products || [];
 
-    console.log("Loaded products count:", allProducts.length);
-    console.log("First product sample:", allProducts[0]);
-
-    // METHOD 1: Try to find product by ID
+    // find product by ID
     currentProduct = allProducts.find(
       (p) => p.id && p.id.toString() === productId.toString()
     );
-
-    // METHOD 2: Try to find by array index if ID didn't work
-    if (!currentProduct && !isNaN(productId)) {
-      const index = parseInt(productId);
-      if (index >= 0 && index < allProducts.length) {
-        currentProduct = allProducts[index];
-        console.log("Found product by index:", index);
-      }
-    }
-
-    // METHOD 3: Try to find by product name from URL
-    if (!currentProduct) {
-      const productName = getURLParameter("name");
-      if (productName) {
-        currentProduct = allProducts.find(
-          (p) => p.name === decodeURIComponent(productName)
-        );
-      }
-    }
-
-    // METHOD 4: Try sessionStorage as last resort
-    if (!currentProduct) {
-      const storedProduct = sessionStorage.getItem("selectedProduct");
-      if (storedProduct) {
-        console.log("Using product from sessionStorage as fallback");
-        currentProduct = JSON.parse(storedProduct);
-      }
-    }
 
     // If still no product found, show error
     if (!currentProduct) {
@@ -209,21 +164,14 @@ function displayProduct() {
   const product = currentProduct;
 
   // Update browser tab title
-  document.title = `${product.name} - LUMINA`;
+  document.title = `${product.name} - MyCanadaDeals`;
 
   // Update product name and price
   $("#product-title").text(product.name);
-  $("#product-price").text(`${parseFloat(product.price).toFixed(2)}`);
+  $("#product-price").text(`\$${parseFloat(product.price).toFixed(2)}`);
   $("#product-sku").text(product.sku || "N/A");
 
-  // Update availability status based on stock
-  const availabilityEl = $("#product-availability");
-  const inStock = product.stock > 0;
-  availabilityEl.text(inStock ? "In Stock" : "Out of Stock");
-  availabilityEl.removeClass("in-stock out-of-stock");
-  availabilityEl.addClass(inStock ? "in-stock" : "out-of-stock");
-
-  // Handle product images (can be single image or array)
+  // Handle product images
   if (product.image) {
     const images = Array.isArray(product.image)
       ? product.image
@@ -289,8 +237,6 @@ function displayProduct() {
 /**
  * Display star rating (full stars, half stars, empty stars)
  * Example: 4.5 rating = 4 full stars + 1 half star
- * @param {string} selector - jQuery selector for where to put stars
- * @param {number} rating - Rating value (0-5)
  */
 function renderStars(selector, rating) {
   const container = $(selector);
@@ -321,26 +267,25 @@ function renderStars(selector, rating) {
 /**
  * Load product reviews from reviews.json file and display them
  * Shows average rating, rating breakdown, and individual reviews
- * @param {string} productId - The ID of the current product
  */
 async function loadReviews(productId) {
   try {
-    // Step 1: Load the reviews.json file
+    // Load the reviews.json file
     const reviewsData = await $.getJSON("../jsonFiles/reviews.json");
 
-    // Step 2: Find reviews for this specific product
+    // Find reviews for this specific product
     // The JSON file has an array of objects, each with product_id and reviews
     const productReviews = reviewsData.find(
       (item) => item.product_id === productId.toString()
     );
 
-    // Step 3: Check if we found reviews for this product
+    // Check if we found reviews for this product
     if (
       !productReviews ||
       !productReviews.reviews ||
       productReviews.reviews.length === 0
     ) {
-      // No reviews found - display a "no reviews" message
+      // display No reviews found
       $("#reviews-list").html(
         '<p class="no-reviews">No reviews yet. Be the first to review this product!</p>'
       );
@@ -351,10 +296,10 @@ async function loadReviews(productId) {
       return;
     }
 
-    // Step 4: Get the reviews array for this product
+    // Get the reviews array for this product
     const reviews = productReviews.reviews;
 
-    // Step 5: Calculate average rating from all reviews
+    // Calculate average rating from all reviews
     // Add up all ratings and divide by number of reviews
     const avgRating =
       reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
@@ -364,11 +309,11 @@ async function loadReviews(productId) {
       `${reviews.length} review${reviews.length !== 1 ? "s" : ""}`
     );
 
-    // Step 6: Count how many reviews for each star rating (1-5)
+    // Count how many reviews for each star rating (1-5)
     const ratingCounts = [0, 0, 0, 0, 0]; // [1-star, 2-star, 3-star, 4-star, 5-star]
     reviews.forEach((r) => ratingCounts[r.rating - 1]++);
 
-    // Step 7: Create rating breakdown bars (visual representation)
+    // Create rating breakdown bars (visual representation)
     const breakdownContainer = $("#rating-breakdown");
     breakdownContainer.empty(); // Clear any existing content
 
@@ -393,17 +338,17 @@ async function loadReviews(productId) {
       breakdownContainer.append(barItem);
     }
 
-    // Step 8: Display individual review items
+    // Display individual review items
     const reviewsList = $("#reviews-list");
     reviewsList.empty(); // Clear any existing reviews
 
     reviews.forEach((review) => {
-      // Get initials from user name (e.g., "Harvey J." → "HJ")
+      // Get initials from user name
       const initials = review.user
         .split(" ")
         .map((n) => n[0]) // Take first letter of each word
         .join("")
-        .toUpperCase(); // Convert to uppercase
+        .toUpperCase();
 
       // Create review item HTML
       const reviewItem = $(`
@@ -588,7 +533,7 @@ function addToCart() {
  */
 function loadCart() {
   try {
-    const savedCart = localStorage.getItem("lumina_cart");
+    const savedCart = localStorage.getItem("MyCanadaDeals_cart");
     if (savedCart) {
       cart = JSON.parse(savedCart);
       updateCartCount();
@@ -605,7 +550,7 @@ function loadCart() {
  */
 function saveCart() {
   try {
-    localStorage.setItem("lumina_cart", JSON.stringify(cart));
+    localStorage.setItem("MyCanadaDeals_cart", JSON.stringify(cart));
   } catch (error) {
     console.error("Error saving cart:", error);
   }
@@ -624,8 +569,6 @@ function updateCartCount() {
 /**
  * Show notification message to user
  * Appears in top-right corner and auto-dismisses after 3 seconds
- * @param {string} message - Message to display
- * @param {string} type - "success" or "error" (changes color and icon)
  */
 function showNotification(message, type = "success") {
   // Remove any existing notification first
@@ -645,7 +588,7 @@ function showNotification(message, type = "success") {
 
   $("body").append(notification);
 
-  // Add CSS for notification if not already added
+  // Add CSS for notification
   if (!$("#notification-style").length) {
     $("head").append(`
       <style id="notification-style">
@@ -698,7 +641,6 @@ function showNotification(message, type = "success") {
 /**
  * Show error message when product fails to load
  * Displays error in place of product content
- * @param {string} message - Error message to display
  */
 function showError(message) {
   $("#main-product-image").parent().html(`

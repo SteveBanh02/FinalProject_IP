@@ -1,5 +1,5 @@
 let cart = [];
-let shippingCost = 0.0; // Free shipping
+let shippingCost = 0.0;
 
 $(document).ready(function () {
   loadCart();
@@ -45,7 +45,6 @@ function handleSearch() {
  */
 function initializeSearch() {
   const searchInput = $("#search-input");
-
   // Handle Enter key press in search input
   searchInput.on("keypress", function (e) {
     // Check if Enter key (key code 13) is pressed
@@ -60,7 +59,7 @@ function initializeSearch() {
 // Load cart from localStorage
 function loadCart() {
   try {
-    const savedCart = localStorage.getItem("lumina_cart");
+    const savedCart = localStorage.getItem("MyCanadaDeals_cart");
     if (savedCart) {
       cart = JSON.parse(savedCart);
     }
@@ -118,27 +117,16 @@ function displayCart() {
   });
 }
 
-// Update shipping cost (always free)
-function updateShippingCost(method) {
-  // All shipping methods are now free
-  shippingCost = 0.0;
-
-  $("#shipping-cost").text("FREE");
-  $("#shipping-display").text("FREE");
-  calculateTotals();
-}
-
 // Calculate totals
 function calculateTotals() {
   const subtotal = cart.reduce((sum, item) => {
     return sum + parseFloat(item.price) * item.quantity;
   }, 0);
 
-  const total = subtotal + shippingCost; // Will be same as subtotal since shipping is FREE
+  const total = subtotal + shippingCost;
 
   $("#subtotal").text(`$${subtotal.toFixed(2)}`);
   $("#subtotal-display").text(`$${subtotal.toFixed(2)}`);
-  $("#shipping-cost").text("FREE");
   $("#shipping-display").text("FREE");
   $("#total").text(`$${total.toFixed(2)}`);
 }
@@ -270,12 +258,6 @@ function validateForm() {
   const isAddressValid = validateAddress();
   const isCityValid = validateCity();
 
-  // const shippingMethod = $("#shipping-method").val();
-  // if (!shippingMethod) {
-  //   alert("Please select a shipping method");
-  //   return false;
-  // }
-
   return isEmailValid && isPhoneValid && isAddressValid && isCityValid;
 }
 
@@ -293,16 +275,16 @@ function placeOrder() {
       (sum, item) => sum + parseFloat(item.price) * item.quantity,
       0
     ),
-    shipping: shippingCost, // This will be 0.0 (FREE)
+    shipping: shippingCost,
     total:
       cart.reduce(
         (sum, item) => sum + parseFloat(item.price) * item.quantity,
         0
-      ) + shippingCost, // Total equals subtotal since shipping is FREE
+      ) + shippingCost,
   };
 
   // Store order data for confirmation page
-  localStorage.setItem("lumina_order", JSON.stringify(orderData));
+  localStorage.setItem("MyCanadaDeals_order", JSON.stringify(orderData));
 
   // Show loading state
   $("#place-order-btn").text("Processing...").prop("disabled", true);
@@ -310,7 +292,7 @@ function placeOrder() {
   // Simulate API call delay
   setTimeout(() => {
     // Clear cart
-    localStorage.removeItem("lumina_cart");
+    localStorage.removeItem("MyCanadaDeals_cart");
 
     // Redirect to confirmation page
     window.location.href = "../HTML/OrderConfirmPage.html";

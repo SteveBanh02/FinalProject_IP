@@ -1,7 +1,4 @@
-/* ========================================
-   RESET AND BASE STYLES
-   ======================================== */
-
+/* RESET AND BASE STYLES */
 * {
   margin: 0;
   padding: 0;
@@ -20,9 +17,7 @@ a {
   color: inherit;
 }
 
-/* ========================================
-   HEADER STYLES
-   ======================================== */
+/* HEADER STYLES */
 
 .site-header {
   background-color: white;
@@ -31,6 +26,7 @@ a {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid #eee;
+  padding: 20px 15px;
 }
 
 /* Header Content Layout */
@@ -38,7 +34,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 60px;
+  padding: 10px 60px;
   gap: 40px;
   max-width: 1600px;
   margin: 0 auto;
@@ -49,7 +45,7 @@ a {
   font-size: 32px;
   letter-spacing: 2px;
   font-weight: bold;
-  color: #333;
+  color: rgb(81, 81, 218);
 }
 
 /* Header Center - Search */
@@ -65,19 +61,14 @@ a {
 
 .search-bar {
   width: 100%;
-  padding: 12px 40px 12px 20px;
+  padding: 12px 20px;
   border: 1px solid #ccc;
   border-radius: 24px;
   font-size: 16px;
 }
 
 .search-icon {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #666;
-  font-size: 16px;
+  display: none;
 }
 
 /* Header Icons Container */
@@ -167,7 +158,6 @@ a {
   gap: 40px;
   padding: 15px 0;
   background: #f8f8f8;
-  border-bottom: 1px solid #eee;
 }
 
 .main-nav a {
@@ -401,6 +391,15 @@ a {
   .main-nav {
     flex-wrap: wrap;
     gap: 20px;
+  }
+
+  .logo a {
+    font-size: 24px;
+  }
+
+  .search-bar {
+    padding: 10px 15px;
+    font-size: 14px;
   }
 
   /* Hero */

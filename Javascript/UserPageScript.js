@@ -1,11 +1,9 @@
-// USER PAGE SCRIPT
 // Handles user authentication, profile display, and logout functionality
-
 // Initialize when page loads
 $(document).ready(function () {
   checkUserAuthentication();
   loadCartCount();
-  initializeSearch(); // Initialize search functionality
+  initializeSearch();
 });
 
 // SEARCH FUNCTIONALITY
@@ -14,7 +12,7 @@ $(document).ready(function () {
  */
 function handleSearch() {
   const searchInput = $("#search-input");
-  const searchQuery = searchInput.val().trim(); // Get trimmed search query
+  const searchQuery = searchInput.val().trim();
 
   // Only proceed if search query is not empty
   if (searchQuery) {
@@ -49,7 +47,7 @@ function initializeSearch() {
 function checkUserAuthentication() {
   try {
     // Get user data from localStorage
-    const user = JSON.parse(localStorage.getItem("lumina_user"));
+    const user = JSON.parse(localStorage.getItem("MyCanadaDeals_user"));
 
     if (!user) {
       // If no user is logged in, redirect to login page
@@ -67,7 +65,6 @@ function checkUserAuthentication() {
 
 /**
  * Display user information on the page
- * @param {Object} user - User object from localStorage
  */
 function displayUserInfo(user) {
   // Extract user name from email if not provided
@@ -98,11 +95,10 @@ function displayUserInfo(user) {
 
 /**
  * Load user preferences and settings
- * @param {Object} user - User object
  */
 function loadUserPreferences(user) {
   // Check if user has any saved preferences
-  const preferences = localStorage.getItem("lumina_user_preferences");
+  const preferences = localStorage.getItem("MyCanadaDeals_user_preferences");
 
   if (preferences) {
     try {
@@ -120,7 +116,7 @@ function loadUserPreferences(user) {
  */
 function loadCartCount() {
   try {
-    const savedCart = localStorage.getItem("lumina_cart");
+    const savedCart = localStorage.getItem("MyCanadaDeals_cart");
 
     if (savedCart) {
       const cart = JSON.parse(savedCart);
@@ -144,10 +140,7 @@ function logout() {
   if (confirm("Are you sure you want to logout?")) {
     try {
       // Clear user data from localStorage
-      localStorage.removeItem("lumina_user");
-
-      // Optional: Clear other user-specific data
-      // localStorage.removeItem("lumina_user_preferences");
+      localStorage.removeItem("MyCanadaDeals_user");
 
       // Show logout message
       showMessage("Logged out successfully!", "success");
@@ -166,8 +159,6 @@ function logout() {
 
 /**
  * Show a temporary message to the user
- * @param {string} text - Message text
- * @param {string} type - Message type (success, error, info)
  */
 function showMessage(text, type) {
   // Create message element if it doesn't exist
@@ -190,24 +181,7 @@ function showMessage(text, type) {
 }
 
 /**
- * Edit user profile (placeholder for future functionality)
- */
-function editProfile() {
-  alert("Profile editing feature coming soon!");
-  // Future: Open modal or navigate to edit page
-}
-
-/**
- * View user's order history (placeholder for future functionality)
- */
-function viewOrders() {
-  alert("Order history feature coming soon!");
-  // Future: Navigate to orders page or show orders section
-}
-
-/**
  * Navigate to different pages
- * @param {string} page - Page to navigate to
  */
 function navigateTo(page) {
   window.location.href = page;
